@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="청귤고양이 Tangy Cat - 감성적인 모바일 청첩장 제작 서비스" />
+  <title>청귤고양이 | Tangy Cat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/MaruBuri/MaruBuri.css">
+  <style>
+    :root{
+      --bg:#fbfaf8; --paper:#ffffff; --ink:#181716; --muted:#7f7a76; --line:#e9e5e1;
+      --rose:#d9899d; --rose-dark:#b95f76; --rose-pale:#f7e9ed; --pink:#f3d8df;
+      --citrus:#d9899d; --citrus-soft:#f7e9ed; --shadow:0 20px 60px rgba(31,22,24,.08);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:var(--bg);font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.65;letter-spacing:-.02em}
+    a{color:inherit;text-decoration:none} .wrap{width:min(1180px,calc(100% - 40px));margin:0 auto}
+    .serif{font-family:"Maru Buri","MaruBuri","Noto Serif KR",serif;letter-spacing:-.035em}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--rose-dark)}
+    .eyebrow::before{content:"";width:22px;height:1px;background:currentColor}
+    .display{margin:14px 0 0;font-size:clamp(42px,6.6vw,92px);line-height:.99;font-weight:500}
+    .display,.section-title,.statement .big,.story-copy h3,.final h2{font-family:"Maru Buri","MaruBuri","Noto Serif KR",serif}
+    .section-title{margin:12px 0 0;font-size:clamp(34px,4.6vw,64px);line-height:1.08;font-weight:650}
+    .section-copy{margin:20px 0 0;max-width:620px;color:var(--muted);font-size:16px}
+    .pill{display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.68);font-size:13px;font-weight:700}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;border-radius:999px;border:1px solid var(--ink);font-size:14px;font-weight:800;transition:.2s ease}
+    .btn:hover{transform:translateY(-2px)} .btn-dark{background:var(--ink);color:#fff} .btn-light{background:#fff;border-color:var(--line)} .btn-citrus{background:var(--rose);color:#fff;border-color:var(--rose)}
+    .tag{display:inline-flex;padding:7px 11px;border-radius:999px;background:var(--rose-pale);color:var(--rose-dark);font-size:12px;font-weight:800}
+    nav{position:sticky;top:0;z-index:20;background:rgba(251,250,248,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(233,229,225,.75)}
+    .nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900}
+    .brand-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#e7a0b6,#f3cbd7);color:#fff;font-family:Georgia,serif;font-style:italic;box-shadow:0 8px 20px rgba(176,184,88,.24)}
+    .brand-text{display:flex;flex-direction:column;line-height:1.1}.brand-text b{font-size:15px}.brand-text span{font-size:11px;color:#7e7772;font-weight:700;letter-spacing:.08em}
+    .nav-links{display:flex;align-items:center;gap:26px;font-size:13px;font-weight:700;color:#5f5a57}
+    .hero{position:relative;min-height:860px;display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:54px;padding:86px 0 96px}
+    .hero-copy p{max-width:570px;margin:30px 0 0;color:#6e6864;font-size:17px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.hero-mini{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}
+    .stage{position:relative;min-height:670px;display:grid;place-items:center}
+    .blob{position:absolute;width:470px;height:570px;border-radius:48% 52% 50% 46%;background:linear-gradient(160deg,#f4cdd7 0%,#efd8d4 45%,#f8efec 100%);transform:rotate(-7deg)}
+    .phone{position:relative;width:305px;height:620px;padding:10px;border-radius:42px;background:#111;box-shadow:0 34px 80px rgba(45,24,30,.18);transform:rotate(5deg);z-index:2}
+    .screen{position:relative;height:100%;overflow:hidden;border-radius:34px;background:#fff}
+    .screen-photo{height:54%;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.2)),linear-gradient(135deg,#d6c1b9,#f1dedf 55%,#c6a2aa);position:relative}
+    .screen-photo::before,.screen-photo::after{content:"";position:absolute;border-radius:999px;background:rgba(255,255,255,.6);filter:blur(1px)}
+    .screen-photo::before{width:120px;height:210px;left:52px;bottom:20px;transform:rotate(-9deg)}
+    .screen-photo::after{width:100px;height:185px;right:44px;bottom:24px;transform:rotate(10deg)}
+    .screen-date{position:absolute;left:20px;top:24px;color:#fff;font:600 46px/1 Georgia,serif;letter-spacing:-.08em;text-shadow:0 2px 20px rgba(0,0,0,.18)}
+    .screen-body{padding:26px 24px;text-align:center}.screen-body .tiny{font-size:10px;letter-spacing:.2em;color:#8f9d3f}.screen-body h3{margin:10px 0 4px;font:500 27px/1.2 Georgia,serif}.screen-body p{margin:0;color:#8a837f;font-size:11px}
+    .screen-line{height:1px;background:#eee7e4;margin:22px 0}.screen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.screen-grid div{aspect-ratio:1;border-radius:4px;background:#ead9da}
+    .float-card{position:absolute;z-index:3;background:#fff;box-shadow:var(--shadow);border-radius:20px;padding:16px 18px;min-width:165px}
+    .fc1{left:12px;bottom:110px;transform:rotate(-5deg)} .fc2{right:-5px;top:145px;transform:rotate(5deg)}
+    .float-card strong{display:block;font-size:13px;margin-bottom:4px}.float-card span{font-size:11px;color:var(--muted)}
+    .statement{background:#171615;color:#fff;padding:115px 0}.statement-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:end}.statement .eyebrow{color:#e7a9b8}
+    .statement .big{margin:0;font-size:clamp(42px,6vw,78px);line-height:1.04;font-weight:560}.statement-copy{max-width:520px;color:#bdb7b2;font-size:16px}
+    .statement-points{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #34312e}.statement-point{padding:24px 18px 0 0}.statement-point b{font-size:26px;font-family:Georgia,serif;color:#fff}.statement-point span{display:block;color:#9e9893;font-size:13px;margin-top:3px}
+    .story-section{padding:130px 0}.story-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:58px}.story-head .section-copy{margin-bottom:8px}.story-stack{display:grid;gap:34px}
+    .story-card{min-height:520px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border-radius:36px;background:#fff;border:1px solid var(--line);box-shadow:0 22px 70px rgba(35,27,28,.05)}
+    .story-card.reverse .story-copy{order:2}.story-card.reverse .story-visual{order:1}
+    .story-copy{padding:64px 60px;display:flex;flex-direction:column;justify-content:center}.story-copy h3{font-size:clamp(30px,3.4vw,48px);line-height:1.1;margin:15px 0 0}.story-copy p{color:var(--muted);margin:20px 0 0;max-width:440px}
+    .checklist{display:grid;gap:11px;margin-top:26px;font-size:14px}.checklist span::before{content:"✓";margin-right:10px;color:var(--rose-dark);font-weight:900}
+    .story-visual{min-height:500px;display:grid;place-items:center;position:relative;overflow:hidden;background:#f3e9e6}.story-visual.v2{background:#eae7e4}.story-visual.v3{background:#f2dfe5}
+    .mini-phone{width:250px;height:500px;border-radius:36px;background:#111;padding:9px;box-shadow:0 28px 56px rgba(43,27,31,.18);transform:rotate(-4deg)}
+    .mini-screen{height:100%;border-radius:28px;background:#fff;overflow:hidden}.mini-photo{height:56%;background:linear-gradient(135deg,#cab3ae,#efdadd)} .mini-content{padding:24px}
+    .mini-content h5{margin:0 0 12px;font:500 24px Georgia,serif}.mini-content .l{height:8px;background:#f2ece9;border-radius:999px;margin:8px 0}.mini-content .l.s{width:68%}
+    .guestbook{width:78%;max-width:380px;background:#fff;border-radius:28px;padding:30px;box-shadow:var(--shadow);transform:rotate(3deg)}
+    .guestbook h5{font:500 28px Georgia,serif;margin:0 0 6px}.guestbook small{color:var(--muted)}
+    .note{margin-top:20px;padding:16px;border:1px solid #eee7e4;border-radius:16px;background:#fffdfc;font-size:13px;color:#5f5956}.note + .note{margin-top:10px}
+    .memory-book{width:70%;max-width:330px;aspect-ratio:3/4;border-radius:8px;background:#f8f1ef;border:1px solid #e3d7d5;box-shadow:22px 24px 0 #d8b0ba,0 26px 70px rgba(51,28,34,.13);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transform:rotate(-5deg)}
+    .memory-book .heart{font-size:28px;color:var(--rose-dark)} .memory-book h5{margin:14px 0 5px;font:500 27px Georgia,serif}.memory-book p{margin:0;font-size:12px;color:#8c7f7b}
+    .samples{padding:125px 0;background:#fff}.samples-top{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:44px}.sample-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .sample-card{padding:14px;border-radius:26px;background:var(--bg);border:1px solid var(--line);transition:.25s ease}.sample-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .sample-cover{aspect-ratio:4/5;border-radius:18px;overflow:hidden;position:relative;display:flex;align-items:flex-end;padding:22px}
+    .cover1{background:linear-gradient(150deg,#d9b6be,#f3e9e7)} .cover2{background:linear-gradient(150deg,#ddd9d4,#f7f4f0)} .cover3{background:linear-gradient(150deg,#d8b9c0,#f4e7e2)}
+    .cover-title{font:500 39px/1 Georgia,serif;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.12)} .sample-info{padding:20px 7px 7px}.sample-info h4{margin:0;font-size:18px}.sample-info p{margin:7px 0 14px;color:var(--muted);font-size:13px}
+    .sample-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}.sample-link{font-size:13px;font-weight:900;border-bottom:1px solid var(--ink);padding-bottom:2px}
+    .pricing{padding:130px 0}.pricing-head{text-align:center;max-width:760px;margin:0 auto 54px}.pricing-head .section-copy{margin-left:auto;margin-right:auto}.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .price-card{position:relative;padding:36px 32px;border-radius:30px;background:#fff;border:1px solid var(--line);min-height:520px;display:flex;flex-direction:column}
+    .price-card.featured{background:#1a1918;color:#fff;border-color:#1a1918;transform:translateY(-9px)}
+    .price-card .plan{font-size:13px;font-weight:900;letter-spacing:.12em}.price-card .price{font:500 45px/1.1 Georgia,serif;margin:18px 0 10px}.price-card .desc{font-size:14px;color:var(--muted);min-height:46px}.price-card.featured .desc{color:#bdb6b0}
+    .plan-list{display:grid;gap:12px;margin:28px 0 34px;padding-top:26px;border-top:1px solid var(--line);font-size:14px}.price-card.featured .plan-list{border-color:#393633}.plan-list span::before{content:"✓";margin-right:10px;color:var(--rose)}
+    .price-card .btn{margin-top:auto}.price-card.featured .btn{background:#fff;color:#171615;border-color:#fff}
+    .recommend{position:absolute;top:18px;right:18px;background:var(--rose);color:#fff;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:900}
+    .options{padding:0 0 130px}.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .option-box{border-radius:32px;padding:42px;background:#f4ecee;border:1px solid #eadadd}.option-box:nth-child(2){background:#efeeeb;border-color:#e4e0dc}
+    .option-box h3{font-size:30px;margin:12px 0 8px}.option-price{font:500 44px/1 Georgia,serif;margin:20px 0}.option-box p{color:#716a66}
+    .period-table{margin-top:25px;border-top:1px solid rgba(50,40,40,.14)} .period-row{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid rgba(50,40,40,.10);font-size:14px}
+    .process{padding:120px 0;background:#171615;color:#fff}.process .eyebrow{color:#e7a9b8}.process-top{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:54px}.process-top p{max-width:500px;color:#aaa39e}
+    .steps{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #383532}.step{padding:30px 26px 5px 0;border-right:1px solid #383532;min-height:210px}.step:last-child{border-right:0;padding-left:24px}.step:not(:first-child){padding-left:24px}
+    .step-num{font:500 46px/1 Georgia,serif;color:#d890a2}.step h4{margin:25px 0 8px;font-size:17px}.step p{margin:0;color:#aaa39e;font-size:13px}
+    .notice{padding:120px 0}.notice-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px}
+    details{border-top:1px solid var(--line);padding:22px 0} details:last-child{border-bottom:1px solid var(--line)}
+    summary{cursor:pointer;list-style:none;font-size:16px;font-weight:800;display:flex;justify-content:space-between;gap:20px} summary::-webkit-details-marker{display:none} summary::after{content:"＋";color:var(--rose-dark)} details[open] summary::after{content:"−"} details p{margin:13px 0 0;color:var(--muted);font-size:14px}
+    .final{padding:130px 0;background:linear-gradient(145deg,#f1cdd6 0%,#f7e9e7 42%,#f9f4ef 100%);text-align:center}.final h2{margin:12px auto 0;max-width:900px;font-size:clamp(42px,6vw,78px);line-height:1.02;font-weight:530}.final p{margin:24px auto 0;max-width:600px;color:#746967}.final .hero-actions{justify-content:center}
+    footer{padding:34px 0 48px;color:#8c8580;font-size:12px}.foot{display:flex;justify-content:space-between;gap:30px;border-top:1px solid var(--line);padding-top:26px}
+    @media(max-width:980px){.nav-links{display:none}.hero{min-height:auto}.hero-grid,.statement-grid,.notice-grid,.option-grid{grid-template-columns:1fr}.stage{min-height:610px}.statement-points{grid-template-columns:1fr 1fr 1fr}.story-card,.story-card.reverse,.sample-grid,.pricing-grid{grid-template-columns:1fr}.story-card.reverse .story-copy{order:1}.story-card.reverse .story-visual{order:2}.price-card.featured{transform:none}.steps{grid-template-columns:1fr 1fr}.step{border-bottom:1px solid #383532}.step:nth-child(2n){border-right:0}.step:last-child{border-right:1px solid #383532}}
+    @media(max-width:640px){.wrap{width:min(100% - 28px,1180px)}.nav-inner{height:62px}.hero-grid{padding:58px 0 70px}.hero-copy p{font-size:15px}.stage{min-height:500px}.blob{width:320px;height:410px}.phone{width:235px;height:475px;border-radius:34px}.screen{border-radius:27px}.screen-date{font-size:35px}.fc1{left:-3px;bottom:70px}.fc2{right:-2px;top:90px}.float-card{min-width:135px;padding:12px 13px}.statement,.story-section,.samples,.pricing,.process,.notice,.final{padding-top:84px;padding-bottom:84px}.statement-grid{gap:30px}.statement-points{grid-template-columns:1fr}.story-head,.samples-top,.process-top{display:block}.story-copy{padding:40px 28px}.story-visual{min-height:420px}.sample-grid{gap:12px}.price-card{min-height:auto;padding:30px 24px}.option-box{padding:30px 24px}.steps{grid-template-columns:1fr}.step,.step:not(:first-child),.step:last-child{padding:24px 0;border-right:0;border-bottom:1px solid #383532;min-height:auto}.foot{display:block}.foot div+div{margin-top:10px}.hero-actions .btn{width:100%}}
+  </style>
+</head>
+<body>
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#">
+      <span class="brand-mark">TC</span>
+      <span class="brand-text"><b>청귤고양이</b><span>TANGY CAT</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#samples">디자인 샘플</a>
+      <a href="#pricing">가격 안내</a>
+      <a href="#process">제작 과정</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-dark" href="#pricing" style="min-height:42px;padding:0 18px">가격 보기</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Tangy Cat Wedding Invitation</span>
+      <h1 class="display serif">청귤고양이가 만드는<br><em style="color:var(--rose-dark);font-weight:500">두 사람의 무드가 담긴</em><br>모바일 청첩장</h1>
+      <p>청귤고양이는 감성적인 분위기와 실용적인 기능을 함께 담은 모바일 청첩장을 제작합니다. 마음에 드는 템플릿을 고르고 사진과 문구만 보내주시면, 두 분다운 초대장을 정성껏 완성해드릴게요.</p>
+      <div class="hero-actions">
+        <a class="btn btn-dark" href="#samples">디자인 샘플 보기</a>
+        <a class="btn btn-light" href="#pricing">가격 안내</a>
+      </div>
+      <div class="hero-mini">
+        <span class="pill">기본 3개월 유지</span>
+        <span class="pill">D-DAY · 지도 · 계좌</span>
+        <span class="pill">화이트 · 핑크 무드</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="blob"></div>
+      <div class="float-card fc1"><strong>Tangy Cat Picks</strong><span>사진 최대 23장</span></div>
+      <div class="float-card fc2"><strong>Guest Book ♡</strong><span>축하 메시지를 한곳에</span></div>
+      <div class="phone">
+        <div class="screen">
+          <div class="screen-photo"><div class="screen-date">26<br>10<br>24</div></div>
+          <div class="screen-body">
+            <div class="tiny">TANGY CAT WEDDING</div>
+            <h3>Seo-yeon &amp; Min-jun</h3>
+            <p>2026. 10. 24 SAT · 12:00 PM</p>
+            <div class="screen-line"></div>
+            <div class="screen-grid"><div></div><div></div><div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="statement">
+  <div class="wrap statement-grid">
+    <div>
+      <span class="eyebrow">About Tangy Cat</span>
+      <h2 class="big serif">상큼한 이름처럼,<br>사랑스럽고<br>기억에 남게.</h2>
+    </div>
+    <div>
+      <p class="statement-copy">청귤고양이는 귀엽기만 한 브랜드가 아니라, 두 사람의 분위기를 섬세하게 담아내는 모바일 청첩장 브랜드를 지향합니다. 부담 없는 가격과 감성적인 구성, 그리고 필요한 기능만 고를 수 있는 유연함까지 함께 담았어요.</p>
+      <div class="statement-points">
+        <div class="statement-point"><b>10,000</b><span>원부터 시작</span></div>
+        <div class="statement-point"><b>3</b><span>가지 패키지</span></div>
+        <div class="statement-point"><b>3M</b><span>기본 유지기간</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="story-section">
+  <div class="wrap">
+    <div class="story-head">
+      <div>
+        <span class="eyebrow">Designed for your day</span>
+        <h2 class="section-title serif">청귤고양이는<br>예쁜 분위기와 편한 사용성을 함께 생각해요.</h2>
+      </div>
+      <p class="section-copy">하객에게는 보기 쉽고, 두 분에게는 기억에 남을 수 있도록 실제 사용 장면을 생각하며 구성합니다.</p>
+    </div>
+
+    <div class="story-stack">
+      <article class="story-card">
+        <div class="story-copy">
+          <span class="tag">BASIC부터 기본 제공</span>
+          <h3 class="serif">열리는 순간부터<br>예쁘게.</h3>
+          <p>첫 화면의 분위기와 작은 움직임까지 자연스럽게. D-DAY, 지도, 계좌정보 같은 꼭 필요한 기능도 기본으로 담습니다.</p>
+          <div class="checklist">
+            <span>기본 애니메이션 효과</span><span>D-DAY 표시</span><span>지도 및 길찾기</span><span>계좌정보 안내</span><span>커플 프로필</span>
+          </div>
+        </div>
+        <div class="story-visual">
+          <div class="mini-phone">
+            <div class="mini-screen">
+              <div class="mini-photo"></div>
+              <div class="mini-content">
+                <h5>Our Wedding</h5>
+                <div class="l"></div><div class="l s"></div><div class="l"></div><div class="l s"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card reverse">
+        <div class="story-copy">
+          <span class="tag">PLUS</span>
+          <h3 class="serif">축하의 말을<br>청첩장 안에.</h3>
+          <p>PLUS에서는 BGM과 방명록을 추가합니다. 하객이 남긴 메시지가 쌓이며, 두 분의 청첩장이 작은 추억 공간이 됩니다.</p>
+          <div class="checklist">
+            <span>BGM 배경음악</span><span>축하 방명록</span><span>사진 최대 23장</span>
+          </div>
+        </div>
+        <div class="story-visual v2">
+          <div class="guestbook">
+            <span class="tag">Guest Book</span>
+            <h5>With love,</h5>
+            <small>두 분에게 남겨진 축하 메시지</small>
+            <div class="note">결혼 진심으로 축하해! 오래오래 행복하자 ♡</div>
+            <div class="note">두 사람의 새로운 시작을 응원해요.</div>
+            <div class="note">오늘처럼 늘 웃는 날만 가득하길!</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="story-card">
+        <div class="story-copy">
+          <span class="tag">추억 보관 OPTION</span>
+          <h3 class="serif">페이지가 닫혀도<br>마음은 남도록.</h3>
+          <p>방명록에 남겨진 메시지를 PDF로 정리해 전달해드립니다. 보관기간 종료 전, 소중한 축하를 하나의 파일로 남겨두세요.</p>
+          <div class="checklist">
+            <span>방명록 내용 정리</span><span>PDF 파일 제작</span><span>추억 보관 옵션 +10,000원</span>
+          </div>
+        </div>
+        <div class="story-visual v3">
+          <div class="memory-book">
+            <div class="heart">♡</div>
+            <h5>Tangy Cat<br>Wedding Archive</h5>
+            <p>our little archive<br>2026.10.24</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="samples" id="samples">
+  <div class="wrap">
+    <div class="samples-top">
+      <div>
+        <span class="eyebrow">Template Collection</span>
+        <h2 class="section-title serif">청귤고양이의<br>웨딩 무드를 골라보세요.</h2>
+      </div>
+      <p class="section-copy">샘플 썸네일과 실제 데모 링크를 연결할 수 있는 영역입니다. 템플릿이 늘어나면 카드만 복사해서 추가하면 됩니다.</p>
+    </div>
+    <div class="sample-grid">
+      <article class="sample-card">
+        <div class="sample-cover cover1"><div class="cover-title">Romantic<br>Pink</div></div>
+        <div class="sample-info">
+          <h4>01 · Romantic Pink</h4><p>부드러운 핑크와 여백 중심의 로맨틱 무드</p>
+          <div class="sample-bottom"><div><span class="tag">Pink</span> <span class="tag">Romantic</span></div><a class="sample-link" href="#" target="_blank">샘플 보기 ↗</a></div>
+        </div>
+      </article>
+      <article class="sample-card">
+        <div class="sample-cover cover2"><div class="cover-title" style="color:#272421;text-shadow:none">Minimal<br>White</div></div>
+        <div class="sample-info">
+          <h4>02 · Minimal White</h4><p>타이포그래피와 사진을 살린 담백한 미니멀 무드</p>
+          <div class="sample-bottom"><div><span class="tag">White</span> <span class="tag">Minimal</span></div><a class="sample-link" href="#" target="_blank">샘플 보기 ↗</a></div>
+        </div>
+      </article>
+      <article class="sample-card">
+        <div class="sample-cover cover3"><div class="cover-title">Lovely<br>Garden</div></div>
+        <div class="sample-info">
+          <h4>03 · Lovely Garden</h4><p>따뜻한 자연색을 담은 밝고 사랑스러운 무드</p>
+          <div class="sample-bottom"><div><span class="tag">Garden</span> <span class="tag">Lovely</span></div><a class="sample-link" href="#" target="_blank">샘플 보기 ↗</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="pricing-head">
+      <span class="eyebrow">Simple Pricing</span>
+      <h2 class="section-title serif">부담은 줄이고,<br>필요한 만큼만 선택하세요.</h2>
+      <p class="section-copy">기본 기능은 충분히 담고, 음악·방명록·디자인 수정처럼 필요한 만큼만 단계적으로 선택할 수 있도록 구성했습니다.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="price-card">
+        <div class="plan">BASIC</div><div class="price">10,000원</div><p class="desc">사진과 문구만 바꿔 빠르게 완성하는 기본형</p>
+        <div class="plan-list"><span>사진 최대 13장</span><span>사진 · 문구 교체</span><span>기본 애니메이션</span><span>D-DAY</span><span>지도 및 길찾기</span><span>계좌정보</span><span>커플 프로필</span></div>
+        <a class="btn btn-light" href="#">BASIC 선택</a>
+      </article>
+      <article class="price-card featured">
+        <div class="recommend">BEST</div><div class="plan">PLUS</div><div class="price">15,000원</div><p class="desc">음악과 방명록까지 더해 조금 더 풍성하게</p>
+        <div class="plan-list"><span>BASIC 전체 포함</span><span>BGM 배경음악</span><span>축하 방명록</span><span>사진 최대 23장</span></div>
+        <a class="btn" href="#">PLUS 선택</a>
+      </article>
+      <article class="price-card">
+        <div class="plan">SIGNATURE</div><div class="price">20,000원</div><p class="desc">두 분의 취향을 조금 더 반영하는 커스텀형</p>
+        <div class="plan-list"><span>PLUS 전체 포함</span><span>디자인 수정</span><span>컬러 수정</span><span>새로운 섹션 최대 2개 제작</span></div>
+        <a class="btn btn-light" href="#">SIGNATURE 선택</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="options">
+  <div class="wrap">
+    <div class="option-grid">
+      <article class="option-box">
+        <span class="eyebrow">Memory Archive</span>
+        <h3 class="serif">추억 보관</h3>
+        <div class="option-price">+10,000원</div>
+        <p>방명록에 남겨진 축하 메시지를 보기 좋게 정리하고, 추억 보관용 레이아웃으로 편집해 PDF 파일로 제작하여 전달합니다. 페이지가 종료된 뒤에도 소중한 마음을 오래 간직할 수 있어요.</p>
+        <div class="period-table">
+          <div class="period-row"><strong>제공 파일</strong><span>방명록 PDF</span></div>
+          <div class="period-row"><strong>추천 대상</strong><span>PLUS · SIGNATURE</span></div>
+        </div>
+      </article>
+      <article class="option-box">
+        <span class="eyebrow">Hosting Period</span>
+        <h3 class="serif">서버 유지기간</h3>
+        <div class="period-table">
+          <div class="period-row"><strong>배포일로부터 3개월</strong><span>무료</span></div>
+          <div class="period-row"><strong>배포일로부터 6개월</strong><span>+5,000원</span></div>
+          <div class="period-row"><strong>배포일로부터 1년</strong><span>+10,000원</span></div>
+        </div>
+        <p style="font-size:13px;margin-top:20px">※ 보관기간 경과 시 모바일 청첩장 페이지와 저장된 데이터는 모두 삭제됩니다. 삭제된 데이터는 복구가 어려우므로 필요한 경우 종료 전 추억 보관 옵션을 이용해주세요.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="process-top">
+      <div>
+        <span class="eyebrow">How it works</span>
+        <h2 class="section-title serif">청귤고양이와 함께<br>간단하게 시작해보세요.</h2>
+      </div>
+      <p>상품과 템플릿을 고른 뒤 필요한 자료를 보내주시면 제작 → 확인 → 배포 순서로 진행됩니다.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h4>패키지 선택</h4><p>BASIC / PLUS / SIGNATURE 중 선택</p></div>
+      <div class="step"><div class="step-num">02</div><h4>자료 전달</h4><p>사진, 문구, 날짜, 장소, 계좌정보 등을 전달</p></div>
+      <div class="step"><div class="step-num">03</div><h4>청첩장 제작</h4><p>선택하신 템플릿을 기준으로 제작</p></div>
+      <div class="step"><div class="step-num">04</div><h4>확인 및 수정</h4><p>오탈자와 전달 정보 기준으로 확인</p></div>
+      <div class="step"><div class="step-num">05</div><h4>최종 배포</h4><p>실제 사용 가능한 모바일 링크 전달</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="notice" id="faq">
+  <div class="wrap notice-grid">
+    <div>
+      <span class="eyebrow">Before you order</span>
+      <h2 class="section-title serif">구매 전<br>꼭 확인해주세요.</h2>
+      <p class="section-copy">합리적인 템플릿형 상품인 만큼 패키지별 제공 범위를 확인해주세요.</p>
+    </div>
+    <div>
+      <details open><summary>BASIC과 PLUS는 디자인 변경이 가능한가요?</summary><p>BASIC과 PLUS는 선택한 템플릿의 구조를 유지하고 사진과 문구를 교체하는 방식입니다. 디자인·컬러 수정은 SIGNATURE에서 가능합니다.</p></details>
+      <details><summary>사진은 몇 장까지 사용할 수 있나요?</summary><p>BASIC은 최대 13장, PLUS와 SIGNATURE는 최대 23장까지 적용할 수 있습니다.</p></details>
+      <details><summary>서버 유지기간은 어떻게 계산되나요?</summary><p>최종 청첩장 배포일을 기준으로 계산됩니다. 기본 3개월 무료이며 6개월 또는 1년으로 연장할 수 있습니다.</p></details>
+      <details><summary>방명록은 기간이 끝나면 어떻게 되나요?</summary><p>보관기간이 종료되면 방명록을 포함한 저장 데이터가 모두 삭제됩니다. 메시지를 보관하고 싶다면 종료 전에 추억 보관 옵션을 신청해주세요.</p></details>
+      <details><summary>커플 프로필은 어떤 패키지에 포함되나요?</summary><p>커플 프로필은 BASIC부터 기본 제공됩니다. 두 분의 이름, 사진, 간단한 소개 등 기본 프로필 정보를 청첩장 안에 구성해드립니다.</p></details><details><summary>새로운 섹션은 어떤 걸 만들 수 있나요?</summary><p>우리의 이야기, 연애 타임라인, TIME CAPSULE 등 기본 구성에 없는 영역을 SIGNATURE에서 최대 2개까지 추가할 수 있습니다. 기능 난이도에 따라 제작 전 가능 여부를 안내합니다.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <span class="eyebrow">Tangy Cat</span>
+    <h2 class="serif">두 사람다운 분위기를<br>청귤고양이와 함께 담아보세요.</h2>
+    <p>상큼하고 사랑스러운 이름처럼, 기억에 오래 남는 모바일 청첩장을 만들어드릴게요. 마음에 드는 템플릿을 고르고 사진과 문구만 보내주세요.</p>
+    <div class="hero-actions">
+      <a class="btn btn-dark" href="#samples">샘플 먼저 보기</a>
+      <a class="btn btn-citrus" href="#pricing">패키지 확인하기</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>© 청귤고양이 · TANGY CAT</div>
+    <div>모바일 청첩장 제작 · 템플릿 기반 서비스</div>
+  </div>
+</footer>
+</body>
+</html>
