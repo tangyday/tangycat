@@ -1034,7 +1034,7 @@
     <img class="hero-photo" src="images/main.webp" alt="두 사람이 함께 촬영한 메인 커플 사진" />
     <h1 class="title-en">We're getting<br>married.</h1>
     <p class="hero-names"><span data-a>하늘</span> <em style="color:var(--coral);font-style:normal">♥</em> <span data-b>다온</span></p>
-    <p class="hero-date"><span data-date>2022. 12. 04. SUN</span> · <span data-time>오전 11시</span></p>
+    <p class="hero-date"><span data-date>2029.02.14.</span> · <span data-time>오후 3시</span></p>
   </header>
 
   <section id="greeting" class="greeting reveal">
@@ -1066,7 +1066,7 @@
   <section class="calendar-wrap reveal">
     <p class="section-label">Save the date</p>
 <h2 class="month">February 2029</h2>
-    <p style="font-size:12px;color:rgba(255,255,255,.65)"><span data-date-long>2029년 2월 14일 수요일</span> · <span data-time>오전 11시</span></p>
+    <p style="font-size:12px;color:rgba(255,255,255,.65)"><span data-date-long>2029년 2월 14일 수요일</span> · <span data-time>오후 3시</span></p>
     <div class="calendar" aria-label="2029년 2월 달력">
       <b>SUN</b><b>MON</b><b>TUE</b><b>WED</b><b>THU</b><b>FRI</b><b>SAT</b>
       <span class="blank">0</span><span class="blank">0</span><span class="blank">0</span><span class="blank">0</span><span>1</span><span>2</span><span>3</span>
@@ -1158,8 +1158,43 @@
       <article class="info-card"><span class="info-no">03</span><h3>드레스 코드</h3><p>정해진 드레스 코드는 없습니다.<br>가장 편안하고 아름다운 모습으로<br>함께 즐겨주세요.</p></article>
     </div>
   </section>
+
+  <section class="account reveal">
+    <p class="section-label">With love</p>
+    <h2 class="section-title">마음 전하실 곳</h2>
+    <p class="body-copy" style="font-size:13px">참석이 어려우신 분들을 위해<br>조심스러운 마음으로 안내드립니다.</p>
+
+    <div class="account-list">
+      <div class="account-item">
+        <button class="account-head" type="button">
+          <span><span data-a>하늘</span>에게</span>
+          <span>＋</span>
+        </button>
+        <div class="account-body">
+          <div>
+            <p class="account-number" id="accountA">카카오뱅크 3333-01-1234567</p>
+            <button class="copy-btn" type="button" data-copy="accountA">계좌번호 복사하기</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-item">
+        <button class="account-head" type="button">
+          <span><span data-b>다온</span>에게</span>
+          <span>＋</span>
+        </button>
+        <div class="account-body">
+          <div>
+            <p class="account-number" id="accountB">토스뱅크 1000-2345-6789</p>
+            <button class="copy-btn" type="button" data-copy="accountB">계좌번호 복사하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <section class="guestbook reveal">
-    <p class="section-label">With love</p><h2 class="section-title">두 사람에게 남기는 마음</h2>
+    <p class="section-label">Guest book</p><h2 class="section-title">축하의 말</h2>
     <div class="guest-list" id="guestList">
       <article class="guest-message"><strong>오랜 친구</strong><time>2029.02.01</time><p>두 사람의 새로운 시작을 진심으로 축하해!</p></article>
       <article class="guest-message"><strong>사랑하는 가족</strong><time>2029.01.28</time><p>지금처럼 서로 아끼며 오래오래 행복하길.</p></article>
@@ -1209,8 +1244,8 @@
   /* ===== 여기만 수정하면 청첩장 전체 정보가 바뀝니다 ===== */
   const CONFIG = {
     personA: '하늘', personB: '다온',
-    weddingDate: '2029-02-14T11:00:00+09:00',
-    dateText: '2022. 12. 04. SUN', dateLong: '2029년 2월 14일 수요일', timeText: '오전 11시',
+    weddingDate: '2029-02-14T15:00:00+09:00',
+    dateText: '2029.02.14.', dateLong: '2029년 2월 14일 수요일', timeText: '오후 3시',
     venue: '합정 웨딩시그니쳐 0층 블룸홀', address: '서울 마포구 양화로 87',
     /* 사진 파일을 HTML과 같은 폴더에 넣고 아래 따옴표 안에 파일명을 적어주세요. */
     photos: { hero:'', profileA:'images/profile_groom.webp', profileB:'images/profile_bride.webp', gallery1:'images/gallery_01.webp', gallery2:'images/gallery_02.webp', gallery3:'images/gallery_03.webp', gallery4:'images/gallery_04.webp', gallery5:'images/gallery_05.webp', gallery6:'images/gallery_06.webp', gallery7:'images/gallery_07.webp', gallery8:'images/gallery_08.webp', gallery9:'images/gallery_09.webp', gallery10:'images/gallery_10.webp', gallery11:'images/gallery_11.webp', closing:'' }
@@ -1364,8 +1399,6 @@
   document.querySelector('#calendarBtn').onclick=()=>{const start=new Date(CONFIG.weddingDate),end=new Date(start.getTime()+2*36e5),fmt=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${fmt(start)}\nDTEND:${fmt(end)}\nSUMMARY:${CONFIG.personA} & ${CONFIG.personB}의 결혼식\nLOCATION:${CONFIG.venue}, ${CONFIG.address}\nEND:VEVENT\nEND:VCALENDAR`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='wedding.ics';a.click();URL.revokeObjectURL(a.href)};
   const guestDialog=document.querySelector('#guestDialog');
   const guestForm=document.querySelector('#guestForm');
-  document.querySelector('#guestWrite').onclick=()=>guestDialog.showModal();
-  document.querySelector('#bottomGuest').onclick=()=>guestDialog.showModal();
 
   document.querySelector('#guestClose').onclick=()=>guestDialog.close();
   guestDialog.addEventListener('click',(e)=>{if(e.target===guestDialog)guestDialog.close()});
@@ -1384,6 +1417,48 @@
     toast('축하의 말을 남겼어요 ♥');
   };
   document.querySelector('#guestMore').onclick=()=>toast('등록된 축하글을 모두 보고 있어요');
+
+  // Guestbook popup
+  (() => {
+    const guestDialog = document.querySelector('#guestDialog');
+    const guestForm = document.querySelector('#guestForm');
+    const guestWrite = document.querySelector('#guestWrite');
+    const bottomGuest = document.querySelector('#bottomGuest');
+    const guestClose = document.querySelector('#guestClose');
+
+    const openGuestDialog = () => {
+      if (!guestDialog) return;
+      if (typeof guestDialog.showModal === 'function') guestDialog.showModal();
+      else guestDialog.setAttribute('open', '');
+    };
+
+    guestWrite?.addEventListener('click', openGuestDialog);
+    bottomGuest?.addEventListener('click', openGuestDialog);
+    guestClose?.addEventListener('click', () => guestDialog?.close());
+
+    guestDialog?.addEventListener('click', (e) => {
+      if (e.target === guestDialog) guestDialog.close();
+    });
+
+    guestForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(guestForm));
+      if (!data.name?.trim() || !data.message?.trim()) return;
+
+      const item = document.createElement('article');
+      item.className = 'guest-message';
+      item.innerHTML = '<strong></strong><time></time><p></p>';
+      item.querySelector('strong').textContent = data.name.trim();
+      item.querySelector('time').textContent = new Date().toLocaleDateString('ko-KR');
+      item.querySelector('p').textContent = data.message.trim();
+
+      document.querySelector('#guestList')?.prepend(item);
+      guestForm.reset();
+      guestDialog.close();
+      if (typeof toast === 'function') toast('축하의 말을 남겼어요 ♥');
+    });
+  })();
+
 </script>
 </body>
 </html>
