@@ -20,7 +20,9 @@ tangycat/
 
 배포 후 주소
 https://tangyday.github.io/tangycat/projects/romantic-pink/
+
 https://tangyday.github.io/tangycat/projects/minimal-white/
+
 https://tangyday.github.io/tangycat/projects/lovely-garden/
 
 사용법
