@@ -9,27 +9,15 @@ tangycat/
 
 ├─ index.html
 
-├─ ...
-
 └─ projects/
 
    ├─ romantic-pink/
    
-   │  ├─ index.html
-   
-   │  └─ images/
    
    ├─ minimal-white/
    
-   │  ├─ index.html
-   
-   │  └─ images/
    
    └─ lovely-garden/
-   
-      ├─ index.html
-      
-      └─ images/
       
 
 배포 후 주소
