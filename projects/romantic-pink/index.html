@@ -822,7 +822,7 @@
       background:linear-gradient(180deg,rgba(248,180,201,.78),rgba(231,137,165,.58))!important;
       backdrop-filter:blur(10px)!important;
       -webkit-backdrop-filter:blur(10px)!important;
-      transition:opacity 1.55s ease, visibility 1.55s ease!important;
+      transition:opacity 1.25s ease, visibility 1.25s ease!important;
       pointer-events:none;
     }
     .hero-intro .intro-stack{display:none!important;}
@@ -878,17 +878,27 @@
       filter:none!important;
     }
 
-    /* 다른 메인 정보는 사진이 열린 뒤 순차적으로 나타남 */
+    /* 다른 메인 정보는 아래에서 살짝 올라오며 부드럽게 나타남 */
     .js .eyebrow,
     .js .hero-names,
     .js .hero-date{
       opacity:0!important;
+      transform:translateY(10px)!important;
+      transition:
+        opacity .85s ease,
+        transform 1s cubic-bezier(.22,1,.36,1)!important;
     }
+
     body.hero-entered .eyebrow,
     body.hero-entered .hero-names,
     body.hero-entered .hero-date{
       opacity:1!important;
+      transform:translateY(0)!important;
     }
+
+    body.hero-entered .eyebrow{transition-delay:.28s!important}
+    body.hero-entered .hero-names{transition-delay:.42s!important}
+    body.hero-entered .hero-date{transition-delay:.56s!important}
 
 
     /* opening title: 한 글자씩 손글씨가 써지는 듯한 등장 */
@@ -917,7 +927,7 @@
 
     /* 글씨가 완성된 뒤 제목 전체가 아래로 내려가며 메인 위치에 안착 */
     .title-en.title-written{
-      animation:titleSettle 2.9s ease-in-out forwards;
+      animation:titleSettle 1.95s cubic-bezier(.22,1,.36,1) forwards;
     }
     @keyframes titleSettle{
       from{top:43%;transform:translateY(-50%)}
@@ -1377,7 +1387,7 @@
     const intro=document.querySelector('#heroIntro');
     if(intro){
       intro.classList.add('out');
-      setTimeout(()=>intro.remove(),1550);
+      setTimeout(()=>intro.remove(),1050);
     }
   }
 
