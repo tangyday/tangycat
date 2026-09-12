@@ -844,9 +844,9 @@
       text-wrap:balance;
       margin:0 auto!important;
 
-      /* 메인 이미지 위 제목은 최종 위치보다 살짝 아래에서 시작 */
-      top:50%!important;
-      transform:translateY(calc(-50% + 14px))!important;
+      /* 한 글자씩 써지는 첫 화면에서는 조금 더 위에서 시작 */
+      top:46%!important;
+      transform:translateY(-50%)!important;
       opacity:1!important;
       filter:none!important;
       transition:
@@ -914,13 +914,14 @@
       100%{opacity:1;transform:translateY(0) scale(1);filter:none}
     }
 
-    /* 글씨가 완성된 뒤 메인 이미지 위 제목이 살짝 위로 올라와 안착 */
+    /* 글씨가 완성된 뒤 메인 위치로 이동하고, 살짝 아래에서 위로 안착 */
     .title-en.title-written{
       animation:titleSettle 1.95s cubic-bezier(.22,1,.36,1) forwards;
     }
     @keyframes titleSettle{
-      from{top:50%;transform:translateY(calc(-50% + 14px))}
-      to{top:50%;transform:translateY(-50%)}
+      0%{top:46%;transform:translateY(-50%)}
+      68%{top:50%;transform:translateY(calc(-50% + 14px))}
+      100%{top:50%;transform:translateY(-50%)}
     }
 
     @media (prefers-reduced-motion:reduce){
@@ -937,6 +938,89 @@
       }
     }
 
+
+    /* guestbook section: screenshot-inspired layout */
+    .guestbook{
+      padding:108px 31px 110px!important;
+      background:#fff!important;
+    }
+    .guestbook .section-label,
+    .guestbook .section-title{
+      text-align:center!important;
+    }
+    .guest-intro{
+      margin:10px 0 34px;
+      text-align:center;
+      font-family:"Gowun Batang",serif;
+      color:#8d8589;
+      font-size:14px;
+      line-height:2.05;
+    }
+    .guest-write-wrap,
+    .guest-more-wrap{
+      display:flex;
+      justify-content:center;
+    }
+    .guest-write-wrap{
+      margin-bottom:38px;
+    }
+    .guest-write-btn{
+      width:min(100%,304px);
+      min-height:58px;
+      border:0!important;
+      border-radius:8px!important;
+      background:#e88ca8!important;
+      color:#fff!important;
+      font-size:14px!important;
+      font-weight:700!important;
+      box-shadow:0 12px 26px rgba(232,140,168,.16);
+    }
+    .guest-list{
+      margin-top:0!important;
+      border-top:1px solid var(--line);
+    }
+    .guest-message{
+      padding:24px 0 22px!important;
+      border-bottom:1px solid var(--line)!important;
+    }
+    .guest-message strong{
+      display:block;
+      font-size:12px;
+      font-weight:700;
+      color:#353033;
+      margin-bottom:10px;
+    }
+    .guest-message time{
+      float:right;
+      font-size:9px;
+      color:#b1a9ad;
+      letter-spacing:.02em;
+    }
+    .guest-message p{
+      margin:0!important;
+      font-family:"Gowun Batang",serif;
+      font-size:14px!important;
+      line-height:1.9!important;
+      color:#6d676a!important;
+      padding-right:40px;
+    }
+    .guest-hidden{
+      display:none!important;
+    }
+    .guest-more-wrap{
+      margin-top:26px;
+    }
+    .guest-more-btn{
+      width:min(100%,170px);
+      min-height:54px;
+      border:1px solid #eadfe3!important;
+      border-radius:4px!important;
+      background:#fff!important;
+      color:#444!important;
+      font-size:14px!important;
+      font-weight:600!important;
+      box-shadow:none!important;
+    }
     /* guestbook write popup */
     #guestDialog{
       border:0!important;
@@ -1274,12 +1358,23 @@
   </section>
 
 <section class="guestbook reveal" id="guestbook">
-    <p class="section-label">Guest book</p><h2 class="section-title">축하의 말</h2>
+    <p class="section-label">Guest book</p>
+    <h2 class="section-title">축하의 말</h2>
+    <p class="guest-intro">
+      오래도록 기억될 오늘의 마음을,<br>
+      두 사람에게 따뜻한 축하 한마디로 남겨주세요.
+    </p>
+    <div class="guest-write-wrap">
+      <button class="btn guest-write-btn" id="guestWrite">축하의 말 남기기</button>
+    </div>
     <div class="guest-list" id="guestList">
       <article class="guest-message"><strong>오랜 친구</strong><time>2029.02.01</time><p>두 사람의 새로운 시작을 진심으로 축하해!</p></article>
       <article class="guest-message"><strong>사랑하는 가족</strong><time>2029.01.28</time><p>지금처럼 서로 아끼며 오래오래 행복하길.</p></article>
+      <article class="guest-message"><strong>소중한 지인</strong><time>2029.01.22</time><p>반짝이는 오늘처럼 앞으로의 날들도 늘 다정하고 행복하길 바라요.</p></article>
     </div>
-    <div class="guest-actions"><button class="btn" id="guestWrite">축하글 작성</button><button class="btn" id="guestMore">전체보기</button></div>
+    <div class="guest-more-wrap">
+      <button class="btn guest-more-btn" id="guestMore">더보기</button>
+    </div>
   </section>
 
   <section class="closing-photo reveal" data-photo-slot="closing"><img class="closing-illustration" src="images/closing_illustration.webp" alt="손을 잡고 웃고 있는 단발과 숏컷 단발의 두 신부 일러스트" /><div class="closing-copy"><span>AND OUR FOREVER BEGINS</span><h2>서로의 가장 가까운 편으로<br>오래 함께하겠습니다.</h2></div></section>
@@ -1570,6 +1665,7 @@
     item.querySelector('time').textContent = new Date().toLocaleDateString('ko-KR');
     item.querySelector('p').textContent = message;
     document.getElementById('guestList')?.prepend(item);
+    updateGuestList();
 
     guestForm.reset();
     if (typeof guestDialog.close === 'function') guestDialog.close();
@@ -1578,8 +1674,33 @@
     if (typeof toast === 'function') toast('축하의 말을 남겼어요 ♥');
   });
 
+  const guestVisibleCount = 3;
+  let guestExpanded = false;
+
+  function updateGuestList(){
+    const guestList = document.getElementById('guestList');
+    const items = guestList ? [...guestList.querySelectorAll('.guest-message')] : [];
+    const hiddenCount = Math.max(0, items.length - guestVisibleCount);
+
+    items.forEach((item, index) => {
+      item.classList.toggle('guest-hidden', !guestExpanded && index >= guestVisibleCount);
+    });
+
+    if (guestMoreBtn){
+      if (hiddenCount <= 0){
+        guestMoreBtn.style.display = 'none';
+      } else {
+        guestMoreBtn.style.display = '';
+        guestMoreBtn.textContent = guestExpanded ? '접기' : `더보기 (${hiddenCount})`;
+      }
+    }
+  }
+
+  updateGuestList();
+
   guestMoreBtn?.addEventListener('click', () => {
-    if (typeof toast === 'function') toast('등록된 축하글을 모두 보고 있어요');
+    guestExpanded = !guestExpanded;
+    updateGuestList();
   });
 
 </script>
