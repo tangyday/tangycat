@@ -1158,9 +1158,7 @@
       <article class="info-card"><span class="info-no">03</span><h3>드레스 코드</h3><p>정해진 드레스 코드는 없습니다.<br>가장 편안하고 아름다운 모습으로<br>함께 즐겨주세요.</p></article>
     </div>
   </section>
-
-  <section class="rsvp reveal"><p class="section-label">RSVP</p><h2 class="section-title">함께해 주실 마음을 알려주세요</h2><p>소중한 시간을 내어 함께해 주시는 모든 분께 감사드립니다.<br>더 따뜻하게 맞이할 수 있도록 참석 여부와 동반 인원을 남겨주세요.</p><button class="btn dark" id="rsvpBtn">참석 여부 전달</button></section>
-  <section class="guestbook reveal">
+<section class="guestbook reveal">
     <p class="section-label">With love</p><h2 class="section-title">두 사람에게 남기는 마음</h2>
     <div class="guest-list" id="guestList">
       <article class="guest-message"><strong>오랜 친구</strong><time>2029.02.01</time><p>두 사람의 새로운 시작을 진심으로 축하해!</p></article>
@@ -1173,7 +1171,7 @@
   <footer><div class="footer-heart">♥</div><h2 class="footer-title"><span data-a>하늘</span> & <span data-b>다온</span></h2><p class="footer-copy">THANK YOU FOR CELEBRATING WITH US</p></footer>
 </main>
 
-<nav class="bottom-bar" aria-label="빠른 메뉴"><button class="btn" id="shareBtn">↗ 초대장 공유</button><button class="btn primary" id="bottomRsvp">♥ 참석 여부</button></nav>
+<nav class="bottom-bar" aria-label="빠른 메뉴"><button class="btn" id="shareBtn">↗ 초대장 공유</button><button class="btn primary" id="bottomGuest">♥ 축하의 말</button></nav>
 <div class="toast" id="toast" role="status">복사했습니다</div>
 
 <dialog id="galleryDialog" aria-label="갤러리 이미지 보기">
@@ -1187,10 +1185,6 @@
     <p class="gallery-hint">좌우로 슬라이드하면 다음 사진으로 이동하고, 바깥 영역을 누르면 닫을 수 있어요.</p>
   </div>
 </dialog>
-
-<dialog id="rsvpDialog"><div class="modal"><button class="close" id="closeDialog" aria-label="닫기">×</button><h2>참석 의사 전달</h2><p>이 예시 파일에서는 입력 내용이 기기에만 저장됩니다.<br>실제 접수용 구글폼 링크로 버튼을 연결해 사용해 주세요.</p><form class="form-grid" id="rsvpForm"><input name="name" placeholder="성함" required><select name="attendance" required><option value="">참석 여부를 선택해 주세요</option><option>기쁜 마음으로 참석할게요</option><option>아쉽지만 참석이 어려워요</option></select><input name="guests" inputmode="numeric" placeholder="동반 인원 (본인 포함)"><button class="btn sage full" type="submit">마음 전하기</button></form></div></dialog>
-
-
 <dialog id="guestDialog" class="guest-dialog">
   <div class="guest-modal">
     <button class="close guest-close" id="guestClose" type="button" aria-label="닫기">×</button>
@@ -1365,14 +1359,14 @@
     if(e.key==='ArrowRight') nextGallery();
     if(e.key==='ArrowLeft') prevGallery();
     if(e.key==='Escape') galleryDialog.close();
-  });
-
-  const dialog=document.querySelector('#rsvpDialog'); const openDialog=()=>dialog.showModal(); document.querySelector('#rsvpBtn').onclick=openDialog;document.querySelector('#bottomRsvp').onclick=openDialog;document.querySelector('#closeDialog').onclick=()=>dialog.close();document.querySelector('#rsvpForm').onsubmit=e=>{e.preventDefault();localStorage.setItem('wedding-rsvp',JSON.stringify(Object.fromEntries(new FormData(e.target))));dialog.close();toast('따뜻한 마음을 전했어요 ♥')};
+  });document.querySelector('#rsvpForm').onsubmit=e=>{e.preventDefault();localStorage.setItem('wedding-rsvp',JSON.stringify(Object.fromEntries(new FormData(e.target))));dialog.close();toast('따뜻한 마음을 전했어요 ♥')};
   document.querySelector('#shareBtn').onclick=async()=>{const data={title:document.title,text:`${CONFIG.personA} & ${CONFIG.personB}의 결혼식에 초대합니다`,url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{await navigator.clipboard.writeText(location.href);toast('초대장 주소를 복사했어요')}};
   document.querySelector('#calendarBtn').onclick=()=>{const start=new Date(CONFIG.weddingDate),end=new Date(start.getTime()+2*36e5),fmt=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${fmt(start)}\nDTEND:${fmt(end)}\nSUMMARY:${CONFIG.personA} & ${CONFIG.personB}의 결혼식\nLOCATION:${CONFIG.venue}, ${CONFIG.address}\nEND:VEVENT\nEND:VCALENDAR`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='wedding.ics';a.click();URL.revokeObjectURL(a.href)};
   const guestDialog=document.querySelector('#guestDialog');
   const guestForm=document.querySelector('#guestForm');
   document.querySelector('#guestWrite').onclick=()=>guestDialog.showModal();
+  document.querySelector('#bottomGuest').onclick=()=>guestDialog.showModal();
+
   document.querySelector('#guestClose').onclick=()=>guestDialog.close();
   guestDialog.addEventListener('click',(e)=>{if(e.target===guestDialog)guestDialog.close()});
   guestForm.onsubmit=e=>{
