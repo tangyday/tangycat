@@ -798,6 +798,224 @@
       background-position:center top!important;
     }
 
+    /* closing illustration: smaller and lower so text remains clear */
+    .closing-illustration{
+      width:88%!important;
+      height:70%!important;
+      object-fit:contain!important;
+      object-position:center bottom!important;
+      margin-top:auto!important;
+    }
+    .closing-photo .closing-copy{
+      top:48px!important;
+      z-index:3!important;
+    }
+
+    /* =========================================================
+       SINGLE HERO TITLE INTRO
+       - We're getting married. 문구는 .title-en 한 번만 사용
+       - 처음에는 오프닝처럼 보이고, 아래로 내려오며 메인 이미지 공개
+       ========================================================= */
+
+    .hero-intro{
+      z-index:3!important;
+      background:linear-gradient(180deg,rgba(248,180,201,.78),rgba(231,137,165,.58))!important;
+      backdrop-filter:blur(10px)!important;
+      -webkit-backdrop-filter:blur(10px)!important;
+      transition:opacity 1.05s ease, visibility 1.05s ease!important;
+      pointer-events:none;
+    }
+    .hero-intro .intro-stack{display:none!important;}
+
+    /* 같은 제목 하나만 오프닝과 메인에 공용 */
+    .title-en{
+      z-index:5!important;
+      left:18px!important;
+      right:18px!important;
+      width:auto!important;
+      max-width:calc(100% - 36px)!important;
+      font-family:"Great Vibes",cursive!important;
+      font-size:clamp(50px,14.5vw,68px)!important;
+      line-height:1.02!important;
+      letter-spacing:0!important;
+      white-space:normal!important;
+      overflow:visible!important;
+      text-align:center!important;
+      text-wrap:balance;
+      margin:0 auto!important;
+
+      /* 첫 화면: 최종 위치보다 살짝 위 */
+      top:43%!important;
+      transform:translateY(-50%)!important;
+      opacity:1!important;
+      filter:none!important;
+      transition:
+        top 1.25s cubic-bezier(.22,1,.36,1),
+        transform 1.25s cubic-bezier(.22,1,.36,1),
+        text-shadow 1.05s ease!important;
+    }
+
+    /* 메인 화면이 열리면 제목이 아래로 부드럽게 내려와 최종 위치에 자리잡음 */
+    body.hero-entered .title-en{
+      top:50%!important;
+      transform:translateY(-50%)!important;
+      opacity:1!important;
+    }
+
+    /* 사진은 제목보다 뒤에서 자연스럽게 드러남 */
+    .js .hero-photo{
+      opacity:0!important;
+      transform:scale(1.045)!important;
+      filter:blur(7px)!important;
+      transition:
+        opacity 1.2s ease .18s,
+        transform 1.4s cubic-bezier(.22,1,.36,1) .18s,
+        filter 1.2s ease .18s!important;
+    }
+    body.hero-entered .hero-photo{
+      opacity:1!important;
+      transform:scale(1)!important;
+      filter:none!important;
+    }
+
+    /* 다른 메인 정보는 사진이 열린 뒤 순차적으로 나타남 */
+    .js .eyebrow,
+    .js .hero-names,
+    .js .hero-date{
+      opacity:0!important;
+    }
+    body.hero-entered .eyebrow,
+    body.hero-entered .hero-names,
+    body.hero-entered .hero-date{
+      opacity:1!important;
+    }
+
+    @media (max-width:360px){
+      .title-en{
+        left:14px!important;
+        right:14px!important;
+        max-width:calc(100% - 28px)!important;
+        font-size:clamp(45px,14vw,58px)!important;
+      }
+    }
+
+    /* guestbook write popup */
+    #guestDialog{
+      border:0!important;
+      padding:0!important;
+      width:min(calc(100% - 36px),380px)!important;
+      max-width:380px!important;
+      border-radius:24px!important;
+      background:#fff!important;
+      box-shadow:0 24px 70px rgba(112,67,82,.22)!important;
+      overflow:hidden;
+    }
+    #guestDialog::backdrop{
+      background:rgba(45,34,39,.48)!important;
+      backdrop-filter:blur(5px);
+      -webkit-backdrop-filter:blur(5px);
+    }
+    .guest-modal{
+      position:relative;
+      padding:34px 24px 26px;
+      background:
+        radial-gradient(circle at 88% 6%,rgba(255,223,233,.78),transparent 28%),
+        linear-gradient(180deg,#fff 0%,#fff9fb 100%);
+      text-align:center;
+    }
+    .guest-close{
+      position:absolute;
+      top:14px;
+      right:16px;
+      float:none!important;
+      width:34px;
+      height:34px;
+      display:grid;
+      place-items:center;
+      padding:0;
+      border-radius:50%;
+      color:#9e7b87;
+      background:rgba(255,255,255,.72);
+    }
+    .guest-modal-label{
+      margin:0 0 8px;
+      font-size:9px;
+      letter-spacing:.22em;
+      color:#e58aa5;
+      font-weight:700;
+    }
+    .guest-modal h2{
+      margin:0;
+      font-family:"Gowun Batang",serif;
+      font-size:22px;
+      color:#3d3437;
+    }
+    .guest-modal-copy{
+      margin:10px 0 24px;
+      font-size:11px;
+      line-height:1.7;
+      color:#93868b;
+    }
+    .guest-form{
+      display:grid;
+      gap:16px;
+      text-align:left;
+    }
+    .guest-form label{
+      display:grid;
+      gap:7px;
+    }
+    .guest-form label > span{
+      padding-left:2px;
+      font-size:10px;
+      font-weight:600;
+      color:#766970;
+    }
+    .guest-form input,
+    .guest-form textarea{
+      width:100%;
+      border:1px solid #f0dbe2;
+      background:#fff;
+      border-radius:14px;
+      padding:14px 15px;
+      font:inherit;
+      font-size:13px;
+      color:#40383b;
+      outline:none;
+      transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;
+    }
+    .guest-form textarea{
+      min-height:112px;
+      resize:none;
+      line-height:1.65;
+    }
+    .guest-form input:focus,
+    .guest-form textarea:focus{
+      border-color:#e995ae;
+      background:#fffdfd;
+      box-shadow:0 0 0 4px rgba(233,149,174,.11);
+    }
+    .guest-submit{
+      width:100%;
+      border:0;
+      border-radius:14px;
+      padding:15px 18px;
+      margin-top:2px;
+      background:#e88ca8;
+      color:#fff;
+      font:inherit;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.02em;
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(232,140,168,.24);
+      transition:transform .18s ease,background .18s ease;
+    }
+    .guest-submit:active{
+      transform:scale(.985);
+      background:#df7f9d;
+    }
+
   </style>
 </head>
 <body>
@@ -810,9 +1028,7 @@
 <main class="page">
   <header class="hero" data-photo-slot="hero">
     <div class="hero-intro" id="heroIntro" aria-hidden="true">
-      <div class="intro-stack">
-        <span class="intro-word">We're getting married.</span>
-      </div>
+      <div class="intro-stack" aria-hidden="true"></div>
     </div>
     <p class="eyebrow">Together is our favorite place</p>
     <img class="hero-photo" src="images/main.webp" alt="두 사람이 함께 촬영한 메인 커플 사진" />
@@ -953,7 +1169,7 @@
     <div class="guest-actions"><button class="btn" id="guestWrite">축하글 작성</button><button class="btn" id="guestMore">전체보기</button></div>
   </section>
 
-  <section class="closing-photo reveal" data-photo-slot="closing"><img class="closing-illustration" src="images/closing_illustration.webp" alt="손을 잡고 웃고 있는 단발과 숏컷 단발의 두 신부 일러스트" /><div class="closing-copy"><span>AND OUR FOREVER BEGINS</span><h2>이제, 평생의 같은 편으로<br>함께 살아가겠습니다.</h2></div></section>
+  <section class="closing-photo reveal" data-photo-slot="closing"><img class="closing-illustration" src="images/closing_illustration.webp" alt="손을 잡고 웃고 있는 단발과 숏컷 단발의 두 신부 일러스트" /><div class="closing-copy"><span>AND OUR FOREVER BEGINS</span><h2>서로의 가장 가까운 편으로<br>오래 함께하겠습니다.</h2></div></section>
   <footer><div class="footer-heart">♥</div><h2 class="footer-title"><span data-a>하늘</span> & <span data-b>다온</span></h2><p class="footer-copy">THANK YOU FOR CELEBRATING WITH US</p></footer>
 </main>
 
@@ -972,7 +1188,28 @@
   </div>
 </dialog>
 
-<dialog id="rsvpDialog"><div class="modal"><button class="close" id="closeDialog" aria-label="닫기">×</button><h2>참석 의사 전달</h2><p>이 예시 파일에서는 입력 내용이 기기에만 저장됩니다.<br>실제 접수용 구글폼 링크로 버튼을 연결해 사용해 주세요.</p><form class="form-grid" id="rsvpForm"><input name="name" placeholder="성함" required><select name="attendance" required><option value="">참석 여부를 선택해 주세요</option><option>기쁜 마음으로 참석할게요</option><option>아쉽지만 참석이 어려워요</option></select><input name="guests" inputmode="numeric" placeholder="동반 인원 (본인 포함)"><textarea name="message" placeholder="두 사람에게 축하 메시지"></textarea><button class="btn sage full" type="submit">마음 전하기</button></form></div></dialog>
+<dialog id="rsvpDialog"><div class="modal"><button class="close" id="closeDialog" aria-label="닫기">×</button><h2>참석 의사 전달</h2><p>이 예시 파일에서는 입력 내용이 기기에만 저장됩니다.<br>실제 접수용 구글폼 링크로 버튼을 연결해 사용해 주세요.</p><form class="form-grid" id="rsvpForm"><input name="name" placeholder="성함" required><select name="attendance" required><option value="">참석 여부를 선택해 주세요</option><option>기쁜 마음으로 참석할게요</option><option>아쉽지만 참석이 어려워요</option></select><input name="guests" inputmode="numeric" placeholder="동반 인원 (본인 포함)"><button class="btn sage full" type="submit">마음 전하기</button></form></div></dialog>
+
+
+<dialog id="guestDialog" class="guest-dialog">
+  <div class="guest-modal">
+    <button class="close guest-close" id="guestClose" type="button" aria-label="닫기">×</button>
+    <p class="guest-modal-label">WITH LOVE</p>
+    <h2>축하의 말 남기기</h2>
+    <p class="guest-modal-copy">두 사람에게 따뜻한 마음을 남겨주세요.</p>
+    <form id="guestForm" class="guest-form">
+      <label>
+        <span>이름</span>
+        <input name="name" type="text" placeholder="성함을 입력해 주세요" required maxlength="20">
+      </label>
+      <label>
+        <span>메시지</span>
+        <textarea name="message" placeholder="축하 메시지를 남겨주세요" required maxlength="300"></textarea>
+      </label>
+      <button class="guest-submit" type="submit">축하글 남기기</button>
+    </form>
+  </div>
+</dialog>
 
 <script>
   /* ===== 여기만 수정하면 청첩장 전체 정보가 바뀝니다 ===== */
@@ -1133,7 +1370,25 @@
   const dialog=document.querySelector('#rsvpDialog'); const openDialog=()=>dialog.showModal(); document.querySelector('#rsvpBtn').onclick=openDialog;document.querySelector('#bottomRsvp').onclick=openDialog;document.querySelector('#closeDialog').onclick=()=>dialog.close();document.querySelector('#rsvpForm').onsubmit=e=>{e.preventDefault();localStorage.setItem('wedding-rsvp',JSON.stringify(Object.fromEntries(new FormData(e.target))));dialog.close();toast('따뜻한 마음을 전했어요 ♥')};
   document.querySelector('#shareBtn').onclick=async()=>{const data={title:document.title,text:`${CONFIG.personA} & ${CONFIG.personB}의 결혼식에 초대합니다`,url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{await navigator.clipboard.writeText(location.href);toast('초대장 주소를 복사했어요')}};
   document.querySelector('#calendarBtn').onclick=()=>{const start=new Date(CONFIG.weddingDate),end=new Date(start.getTime()+2*36e5),fmt=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${fmt(start)}\nDTEND:${fmt(end)}\nSUMMARY:${CONFIG.personA} & ${CONFIG.personB}의 결혼식\nLOCATION:${CONFIG.venue}, ${CONFIG.address}\nEND:VEVENT\nEND:VCALENDAR`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='wedding.ics';a.click();URL.revokeObjectURL(a.href)};
-  document.querySelector('#guestWrite').onclick=()=>{const name=prompt('성함을 적어주세요');if(!name)return;const message=prompt('축하 메시지를 남겨주세요');if(!message)return;const item=document.createElement('article');item.className='guest-message';item.innerHTML=`<strong></strong><time></time><p></p>`;item.querySelector('strong').textContent=name;item.querySelector('time').textContent=new Date().toLocaleDateString('ko-KR');item.querySelector('p').textContent=message;document.querySelector('#guestList').prepend(item);toast('축하의 말을 남겼어요 ♥')};
+  const guestDialog=document.querySelector('#guestDialog');
+  const guestForm=document.querySelector('#guestForm');
+  document.querySelector('#guestWrite').onclick=()=>guestDialog.showModal();
+  document.querySelector('#guestClose').onclick=()=>guestDialog.close();
+  guestDialog.addEventListener('click',(e)=>{if(e.target===guestDialog)guestDialog.close()});
+  guestForm.onsubmit=e=>{
+    e.preventDefault();
+    const data=Object.fromEntries(new FormData(guestForm));
+    const item=document.createElement('article');
+    item.className='guest-message';
+    item.innerHTML=`<strong></strong><time></time><p></p>`;
+    item.querySelector('strong').textContent=data.name;
+    item.querySelector('time').textContent=new Date().toLocaleDateString('ko-KR');
+    item.querySelector('p').textContent=data.message;
+    document.querySelector('#guestList').prepend(item);
+    guestForm.reset();
+    guestDialog.close();
+    toast('축하의 말을 남겼어요 ♥');
+  };
   document.querySelector('#guestMore').onclick=()=>toast('등록된 축하글을 모두 보고 있어요');
 </script>
 </body>
