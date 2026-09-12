@@ -1016,6 +1016,20 @@
       background:#df7f9d;
     }
 
+    #guestbook{scroll-margin-top:28px;scroll-margin-bottom:90px;}
+
+    /* hero title: move a bit lower after intro */
+    body.hero-entered .title-en{
+      top:61%!important;
+    }
+
+    /* closing illustration: slightly smaller and shifted right */
+    .closing-illustration{
+      width:82%!important;
+      height:66%!important;
+      transform:translateX(14px)!important;
+    }
+
   </style>
 </head>
 <body>
@@ -1193,7 +1207,7 @@
     </div>
   </section>
 
-<section class="guestbook reveal">
+<section class="guestbook reveal" id="guestbook">
     <p class="section-label">Guest book</p><h2 class="section-title">축하의 말</h2>
     <div class="guest-list" id="guestList">
       <article class="guest-message"><strong>오랜 친구</strong><time>2029.02.01</time><p>두 사람의 새로운 시작을 진심으로 축하해!</p></article>
@@ -1394,71 +1408,85 @@
     if(e.key==='ArrowRight') nextGallery();
     if(e.key==='ArrowLeft') prevGallery();
     if(e.key==='Escape') galleryDialog.close();
-  });document.querySelector('#rsvpForm').onsubmit=e=>{e.preventDefault();localStorage.setItem('wedding-rsvp',JSON.stringify(Object.fromEntries(new FormData(e.target))));dialog.close();toast('따뜻한 마음을 전했어요 ♥')};
+  });
   document.querySelector('#shareBtn').onclick=async()=>{const data={title:document.title,text:`${CONFIG.personA} & ${CONFIG.personB}의 결혼식에 초대합니다`,url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{await navigator.clipboard.writeText(location.href);toast('초대장 주소를 복사했어요')}};
   document.querySelector('#calendarBtn').onclick=()=>{const start=new Date(CONFIG.weddingDate),end=new Date(start.getTime()+2*36e5),fmt=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${fmt(start)}\nDTEND:${fmt(end)}\nSUMMARY:${CONFIG.personA} & ${CONFIG.personB}의 결혼식\nLOCATION:${CONFIG.venue}, ${CONFIG.address}\nEND:VEVENT\nEND:VCALENDAR`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='wedding.ics';a.click();URL.revokeObjectURL(a.href)};
-  const guestDialog=document.querySelector('#guestDialog');
-  const guestForm=document.querySelector('#guestForm');
 
-  document.querySelector('#guestClose').onclick=()=>guestDialog.close();
-  guestDialog.addEventListener('click',(e)=>{if(e.target===guestDialog)guestDialog.close()});
-  guestForm.onsubmit=e=>{
+  // ===== Guestbook interactions =====
+  const guestDialog = document.getElementById('guestDialog');
+  const guestForm = document.getElementById('guestForm');
+  const guestWriteBtn = document.getElementById('guestWrite');
+  const guestCloseBtn = document.getElementById('guestClose');
+  const bottomGuestBtn = document.getElementById('bottomGuest');
+  const guestbookSection = document.getElementById('guestbook');
+  const guestMoreBtn = document.getElementById('guestMore');
+
+  function openGuestDialog(){
+    if (!guestDialog) return;
+    if (typeof guestDialog.showModal === 'function') {
+      guestDialog.showModal();
+    } else {
+      guestDialog.setAttribute('open','');
+    }
+  }
+
+  guestWriteBtn?.addEventListener('click', (e) => {
     e.preventDefault();
-    const data=Object.fromEntries(new FormData(guestForm));
-    const item=document.createElement('article');
-    item.className='guest-message';
-    item.innerHTML=`<strong></strong><time></time><p></p>`;
-    item.querySelector('strong').textContent=data.name;
-    item.querySelector('time').textContent=new Date().toLocaleDateString('ko-KR');
-    item.querySelector('p').textContent=data.message;
-    document.querySelector('#guestList').prepend(item);
+    openGuestDialog();
+  });
+
+  guestCloseBtn?.addEventListener('click', () => {
+    if (!guestDialog) return;
+    if (typeof guestDialog.close === 'function') guestDialog.close();
+    else guestDialog.removeAttribute('open');
+  });
+
+  guestDialog?.addEventListener('click', (e) => {
+    if (e.target === guestDialog) {
+      if (typeof guestDialog.close === 'function') guestDialog.close();
+      else guestDialog.removeAttribute('open');
+    }
+  });
+
+  bottomGuestBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    guestbookSection?.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  guestForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(guestForm);
+    const name = String(data.get('name') || '').trim();
+    const message = String(data.get('message') || '').trim();
+    if (!name || !message) return;
+
+    const item = document.createElement('article');
+    item.className = 'guest-message';
+    item.innerHTML = '<strong></strong><time></time><p></p>';
+    item.querySelector('strong').textContent = name;
+    item.querySelector('time').textContent = new Date().toLocaleDateString('ko-KR');
+    item.querySelector('p').textContent = message;
+    document.getElementById('guestList')?.prepend(item);
+
     guestForm.reset();
-    guestDialog.close();
-    toast('축하의 말을 남겼어요 ♥');
-  };
-  document.querySelector('#guestMore').onclick=()=>toast('등록된 축하글을 모두 보고 있어요');
+    if (typeof guestDialog.close === 'function') guestDialog.close();
+    else guestDialog.removeAttribute('open');
 
-  // Guestbook popup
-  (() => {
-    const guestDialog = document.querySelector('#guestDialog');
-    const guestForm = document.querySelector('#guestForm');
-    const guestWrite = document.querySelector('#guestWrite');
-    const bottomGuest = document.querySelector('#bottomGuest');
-    const guestClose = document.querySelector('#guestClose');
+    if (typeof toast === 'function') toast('축하의 말을 남겼어요 ♥');
+  });
 
-    const openGuestDialog = () => {
-      if (!guestDialog) return;
-      if (typeof guestDialog.showModal === 'function') guestDialog.showModal();
-      else guestDialog.setAttribute('open', '');
-    };
-
-    guestWrite?.addEventListener('click', openGuestDialog);
-    bottomGuest?.addEventListener('click', openGuestDialog);
-    guestClose?.addEventListener('click', () => guestDialog?.close());
-
-    guestDialog?.addEventListener('click', (e) => {
-      if (e.target === guestDialog) guestDialog.close();
-    });
-
-    guestForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(guestForm));
-      if (!data.name?.trim() || !data.message?.trim()) return;
-
-      const item = document.createElement('article');
-      item.className = 'guest-message';
-      item.innerHTML = '<strong></strong><time></time><p></p>';
-      item.querySelector('strong').textContent = data.name.trim();
-      item.querySelector('time').textContent = new Date().toLocaleDateString('ko-KR');
-      item.querySelector('p').textContent = data.message.trim();
-
-      document.querySelector('#guestList')?.prepend(item);
-      guestForm.reset();
-      guestDialog.close();
-      if (typeof toast === 'function') toast('축하의 말을 남겼어요 ♥');
-    });
-  })();
+  guestMoreBtn?.addEventListener('click', () => {
+    if (typeof toast === 'function') toast('등록된 축하글을 모두 보고 있어요');
+  });
 
 </script>
+
+<script>
+  window.setTimeout(() => {
+    document.body.classList.add('hero-entered');
+    document.getElementById('heroIntro')?.classList.add('out');
+  }, 3200);
+</script>
+
 </body>
 </html>
