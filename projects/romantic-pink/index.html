@@ -1437,48 +1437,7 @@
     if(e.key==='ArrowLeft') prevGallery();
     if(e.key==='Escape') galleryDialog.close();
   });
-  // ===== Native share sheet (Android / iOS) =====
-  const shareBtn = document.querySelector('#shareBtn');
-  shareBtn?.setAttribute('type','button');
-  shareBtn?.addEventListener('click', async () => {
-    const shareData = {
-      title: document.title,
-      text: `${CONFIG.personA} & ${CONFIG.personB}의 결혼식에 초대합니다 💗`,
-      url: window.location.href
-    };
-
-    // Android Chrome / Samsung Internet / iOS Safari 등에서는
-    // 아래 Web Share API가 휴대폰의 기본 공유창을 그대로 띄웁니다.
-    if (typeof navigator.share === 'function') {
-      try {
-        if (typeof navigator.canShare !== 'function' || navigator.canShare(shareData)) {
-          await navigator.share(shareData);
-          return;
-        }
-      } catch (err) {
-        // 사용자가 공유창을 직접 닫은 경우는 안내하지 않음
-        if (err && err.name === 'AbortError') return;
-        console.warn('Native share failed:', err);
-      }
-    }
-
-    // Web Share API를 지원하지 않는 환경에서는 링크 복사로 대체
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      toast('공유 기능을 지원하지 않아 초대장 주소를 복사했어요');
-    } catch (err) {
-      const temp = document.createElement('textarea');
-      temp.value = window.location.href;
-      temp.setAttribute('readonly','');
-      temp.style.position = 'fixed';
-      temp.style.opacity = '0';
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand('copy');
-      temp.remove();
-      toast('초대장 주소를 복사했어요');
-    }
-  });
+  document.querySelector('#shareBtn').onclick=async()=>{const data={title:document.title,text:`${CONFIG.personA} & ${CONFIG.personB}의 결혼식에 초대합니다`,url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else{await navigator.clipboard.writeText(location.href);toast('초대장 주소를 복사했어요')}};
   document.querySelector('#calendarBtn').onclick=()=>{const start=new Date(CONFIG.weddingDate),end=new Date(start.getTime()+2*36e5),fmt=d=>d.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${fmt(start)}\nDTEND:${fmt(end)}\nSUMMARY:${CONFIG.personA} & ${CONFIG.personB}의 결혼식\nLOCATION:${CONFIG.venue}, ${CONFIG.address}\nEND:VEVENT\nEND:VCALENDAR`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([ics],{type:'text/calendar'}));a.download='wedding.ics';a.click();URL.revokeObjectURL(a.href)};
 
   // ===== Guestbook interactions =====
