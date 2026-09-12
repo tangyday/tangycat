@@ -890,6 +890,45 @@
       opacity:1!important;
     }
 
+
+    /* opening title: 한 글자씩 손글씨가 써지는 듯한 등장 */
+    .title-en .write-char{
+      display:inline-block;
+      opacity:0;
+      transform:translateY(8px) scale(.96);
+      filter:blur(3px);
+      animation:writeChar .42s cubic-bezier(.22,1,.36,1) forwards;
+      animation-delay:calc(var(--i) * .075s + .18s);
+      will-change:opacity,transform,filter;
+    }
+    .title-en .write-space{
+      display:inline-block;
+      width:.22em;
+    }
+    .title-en .write-break{
+      display:block;
+      height:0;
+    }
+    @keyframes writeChar{
+      0%{opacity:0;transform:translateY(8px) scale(.96);filter:blur(3px)}
+      55%{opacity:.72;filter:blur(.7px)}
+      100%{opacity:1;transform:translateY(0) scale(1);filter:none}
+    }
+
+    /* 글씨가 완성된 뒤 제목 전체가 아래로 내려가며 메인 위치에 안착 */
+    .title-en.title-written{
+      animation:titleSettle 1.15s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes titleSettle{
+      from{top:43%;transform:translateY(-50%)}
+      to{top:50%;transform:translateY(-50%)}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .title-en .write-char{opacity:1;transform:none;filter:none;animation:none}
+      .title-en.title-written{animation:none}
+    }
+
     @media (max-width:360px){
       .title-en{
         left:14px!important;
@@ -1297,19 +1336,56 @@
   Object.entries(CONFIG.photos).forEach(([key,src])=>{if(!src)return;const slot=document.querySelector(`[data-photo-slot="${key}"]`);if(!slot)return;slot.style.backgroundImage=`url("${src}")`;slot.style.backgroundSize='cover';slot.style.backgroundPosition='center';if(key==='closing'){const art=slot.querySelector('.closing-illustration');if(art)art.style.display='none'}else if(key!=='hero'){slot.textContent=''}});
   const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let heroIntroDone=false;
+
+  function prepareHeroWriting(){
+    const title=document.querySelector('.title-en');
+    if(!title || title.dataset.writingReady) return;
+    title.dataset.writingReady='1';
+
+    const source="We're getting\nmarried.";
+    title.innerHTML='';
+    let index=0;
+
+    [...source].forEach(ch=>{
+      if(ch==='\n'){
+        const br=document.createElement('span');
+        br.className='write-break';
+        title.appendChild(br);
+        return;
+      }
+      if(ch===' '){
+        const space=document.createElement('span');
+        space.className='write-space';
+        space.innerHTML='&nbsp;';
+        title.appendChild(space);
+        return;
+      }
+      const span=document.createElement('span');
+      span.className='write-char';
+      span.style.setProperty('--i', index++);
+      span.textContent=ch;
+      title.appendChild(span);
+    });
+  }
+
   function enterHero(){
     if(heroIntroDone) return;
     heroIntroDone=true;
+    const title=document.querySelector('.title-en');
+    title?.classList.add('title-written');
     document.body.classList.add('hero-entered');
     const intro=document.querySelector('#heroIntro');
     if(intro){
       intro.classList.add('out');
-      setTimeout(()=>intro.remove(),950);
+      setTimeout(()=>intro.remove(),1050);
     }
   }
+
+  prepareHeroWriting();
+
   if(prefersReducedMotion){enterHero()}
   else{
-    window.addEventListener('load',()=>setTimeout(enterHero,3600),{once:true});
+    window.addEventListener('load',()=>setTimeout(enterHero,2850),{once:true});
     ['pointerdown','touchstart','keydown','wheel'].forEach(evt=>{
       window.addEventListener(evt,enterHero,{once:true,passive:true});
     });
@@ -1507,13 +1583,6 @@
     if (typeof toast === 'function') toast('등록된 축하글을 모두 보고 있어요');
   });
 
-</script>
-
-<script>
-  window.setTimeout(() => {
-    document.body.classList.add('hero-entered');
-    document.getElementById('heroIntro')?.classList.add('out');
-  }, 3200);
 </script>
 
 </body>
