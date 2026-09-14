@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
-  <link rel="icon" type="image/png" href="images/favicon.png" />
-  <link rel="apple-touch-icon" href="images/favicon.png" />
+  <link rel="icon" type="image/png" href="./images/favicon.png" />
+  <link rel="apple-touch-icon" href="./images/favicon.png" />
 
   <meta name="theme-color" content="#ffffff" />
   <meta name="description" content="하늘과 다온, 두 사람이 함께 시작할 새로운 계절에 초대합니다." />
@@ -13,12 +13,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="하늘 & 다온의 결혼식" />
   <meta property="og:description" content="하늘과 다온, 두 사람이 함께 시작할 새로운 계절에 초대합니다." />
-  <meta property="og:image" content="images/wedding-og.png" />
+  <meta property="og:image" content="./images/wedding-og.png" />
   <meta property="og:image:alt" content="하늘과 다온의 웨딩 OG 이미지" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="하늘 & 다온의 결혼식" />
   <meta name="twitter:description" content="하늘과 다온, 두 사람이 함께 시작할 새로운 계절에 초대합니다." />
-  <meta name="twitter:image" content="images/wedding-og.png" />
+  <meta name="twitter:image" content="./images/wedding-og.png" />
 
   <title>하늘 & 다온 | Minimal White Wedding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1603,12 +1603,18 @@
 <style id="guest-button-size-fix">
   /* 우리에게 남기는 말 > 축하의 말 남기기 버튼 글자 크기 조정 */
   .guest-write-btn{font-size:11.5px!important;}
+
+  /* 오프닝 후 메인 이미지 위 웨딩 타이틀만 흰색 */
+  body.hero-entered .title-en{
+    color:#ffffff!important;
+    text-shadow:0 2px 18px rgba(0,0,0,.22)!important;
+  }
 </style>
 
 </head>
 <body>
 
-<audio id="bgMusic" src="wedding.mp3" preload="metadata" loop></audio>
+<audio id="bgMusic" src="./wedding.mp3" preload="metadata" loop></audio>
 <button class="music-toggle" id="musicToggle" type="button" aria-label="배경음악 재생" aria-pressed="false">
   <span class="music-icon" aria-hidden="true">♫</span>
 </button>
@@ -1619,7 +1625,7 @@
       <div class="intro-stack" aria-hidden="true"></div>
     </div>
     <p class="eyebrow">A quiet beginning</p>
-    <img class="hero-photo" src="images/main.webp" alt="두 사람이 함께 촬영한 메인 커플 사진" />
+    <img class="hero-photo" src="./images/main.webp" alt="두 사람이 함께 촬영한 메인 커플 사진" />
     <h1 class="title-en">One fine day.</h1>
     <p class="hero-names"><span data-a>하늘</span> <em style="color:var(--coral);font-style:normal">×</em> <span data-b>다온</span></p>
     <p class="hero-date"><span data-date>2029.02.14.</span> · <span data-time>오후 3시</span></p>
@@ -1679,7 +1685,7 @@
             <h3>첫 장면</h3>
             <p>아무렇지 않던 하루가 오래 기억될 첫 장면이 되었습니다.</p>
             <div class="moment-photo-wrap">
-              <img class="moment-photo" src="images/story_2022.webp" alt="2022년의 두 사람 사진" loading="lazy" />
+              <img class="moment-photo" src="./images/story_2022.webp" alt="2022년의 두 사람 사진" loading="lazy" />
             </div>
           </div>
         </div>
@@ -1689,7 +1695,7 @@
             <h3>같은 일상</h3>
             <p>서로 다른 취향과 속도까지 자연스럽게 우리의 것이 되었습니다.</p>
             <div class="moment-photo-wrap">
-              <img class="moment-photo" src="images/story_2026.webp" alt="2026년의 두 사람 사진" loading="lazy" />
+              <img class="moment-photo" src="./images/story_2026.webp" alt="2026년의 두 사람 사진" loading="lazy" />
             </div>
           </div>
         </div>
@@ -1699,7 +1705,7 @@
             <h3>다음 페이지</h3>
             <p>이제는 같은 방향을 바라보며 다음 페이지를 함께 넘기려 합니다.</p>
             <div class="moment-photo-wrap">
-              <img class="moment-photo" src="images/story_2029.webp" alt="2029년의 두 사람 사진" loading="lazy" />
+              <img class="moment-photo" src="./images/story_2029.webp" alt="2029년의 두 사람 사진" loading="lazy" />
             </div>
           </div>
         </div>
@@ -1801,7 +1807,7 @@
     </div>
   </section>
 
-  <section class="closing-photo reveal" data-photo-slot="closing"><img class="closing-illustration" src="images/closing_illustration.webp" alt="손을 잡고 웃고 있는 단발과 숏컷 단발의 두 신부 일러스트" /><div class="closing-copy"><span>THE NEXT CHAPTER</span><h2>천천히, 오래도록<br>같은 방향으로 걸어가겠습니다.</h2></div></section>
+  <section class="closing-photo reveal" data-photo-slot="closing"><img class="closing-illustration" src="./images/closing_illustration.webp" alt="손을 잡고 웃고 있는 단발과 숏컷 단발의 두 신부 일러스트" /><div class="closing-copy"><span>THE NEXT CHAPTER</span><h2>천천히, 오래도록<br>같은 방향으로 걸어가겠습니다.</h2></div></section>
   <footer><div class="footer-heart">♥</div><h2 class="footer-title"><span data-a>하늘</span> & <span data-b>다온</span></h2><p class="footer-copy">THANK YOU FOR BEING PART OF OUR DAY</p></footer>
 </main>
 
@@ -1846,8 +1852,8 @@
     weddingDate: '2029-02-14T15:00:00+09:00',
     dateText: '2029.02.14.', dateLong: '2029년 2월 14일 수요일', timeText: '오후 3시',
     venue: '합정 웨딩시그니쳐 0층 블룸홀', address: '서울 마포구 양화로 87',
-    /* 사진 파일을 HTML과 같은 폴더에 넣고 아래 따옴표 안에 파일명을 적어주세요. */
-    photos: { hero:'', profileA:'images/profile_groom.webp', profileB:'images/profile_bride.webp', gallery1:'images/gallery_01.webp', gallery2:'images/gallery_02.webp', gallery3:'images/gallery_03.webp', gallery4:'images/gallery_04.webp', gallery5:'images/gallery_05.webp', gallery6:'images/gallery_06.webp', gallery7:'images/gallery_07.webp', gallery8:'images/gallery_08.webp', gallery9:'images/gallery_09.webp', gallery10:'images/gallery_10.webp', gallery11:'images/gallery_11.webp', closing:'images/closing.webp' }
+    /* 배포 구조: projects/minimal-white/index.html / wedding.mp3 / images/* */
+    photos: { hero:'./images/main.webp', profileA:'./images/profile_groom.webp', profileB:'./images/profile_bride.webp', gallery1:'./images/gallery_01.webp', gallery2:'./images/gallery_02.webp', gallery3:'./images/gallery_03.webp', gallery4:'./images/gallery_04.webp', gallery5:'./images/gallery_05.webp', gallery6:'./images/gallery_06.webp', gallery7:'./images/gallery_07.webp', gallery8:'./images/gallery_08.webp', gallery9:'./images/gallery_09.webp', gallery10:'./images/gallery_10.webp', gallery11:'./images/gallery_11.webp', closing:'./images/closing.webp' }
   };
   const all=(s)=>document.querySelectorAll(s); all('[data-a]').forEach(e=>e.textContent=CONFIG.personA); all('[data-b]').forEach(e=>e.textContent=CONFIG.personB); all('[data-date]').forEach(e=>e.textContent=CONFIG.dateText); all('[data-date-long]').forEach(e=>e.textContent=CONFIG.dateLong); all('[data-time]').forEach(e=>e.textContent=CONFIG.timeText); all('[data-venue]').forEach(e=>e.textContent=CONFIG.venue); all('[data-address]').forEach(e=>e.textContent=CONFIG.address); document.title=`${CONFIG.personA} ♥ ${CONFIG.personB} | 2029.02.14`;
   const encoded=encodeURIComponent(CONFIG.address); document.querySelector('#naverMap').href=`https://map.naver.com/p/search/%ED%95%A9%EC%A0%95%20%EC%9B%A8%EB%94%A9%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B3%90%200%EC%B8%B5%20%EB%B8%94%EB%A3%B8%ED%99%80%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%91%ED%99%94%EB%A1%9C%2087`; document.querySelector('#kakaoMap').href=`https://map.kakao.com/?q=%ED%95%A9%EC%A0%95%20%EC%9B%A8%EB%94%A9%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B3%90%200%EC%B8%B5%20%EB%B8%94%EB%A3%B8%ED%99%80%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%91%ED%99%94%EB%A1%9C%2087`;
