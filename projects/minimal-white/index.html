@@ -1719,6 +1719,185 @@
 
 </style>
 
+
+<style id="hero-sequence-final-fix">
+  /* HERO FINAL: white frame + typed warm-gray intro + fixed photo + white final title */
+  html,body{background:#ffffff!important;}
+  .page{background:#ffffff!important;box-shadow:none!important;}
+  .hero{background:#ffffff!important;overflow:hidden!important;}
+
+  /* 메인 사진은 위치 고정. 확대/좌우 이동 없이 opacity만 전환 */
+  .hero-photo{
+    left:34px!important;
+    right:34px!important;
+    top:120px!important;
+    width:calc(100% - 68px)!important;
+    height:calc(100% - 245px)!important;
+    object-position:center center!important;
+    transform:none!important;
+    filter:grayscale(52%) sepia(4%)!important;
+    transition:opacity 1.05s ease!important;
+  }
+  .js .hero-photo{opacity:0!important;transform:none!important;filter:grayscale(52%) sepia(4%)!important;}
+  body.hero-entered .hero-photo{opacity:.96!important;transform:none!important;filter:grayscale(52%) sepia(4%)!important;}
+
+  /* 사진 주변 프레임 영역은 완전한 흰색 */
+  .hero:after{
+    left:34px!important;
+    right:34px!important;
+    top:120px!important;
+    height:calc(100% - 245px)!important;
+    border:1px solid rgba(255,255,255,.68)!important;
+  }
+
+  /* 첫 화면: 웜그레이 문구가 한 글자씩 써지듯 등장 */
+  .hero-intro{
+    position:absolute!important;
+    inset:0!important;
+    z-index:20!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    background:#ffffff!important;
+    backdrop-filter:none!important;
+    transition:opacity .85s ease,visibility .85s ease!important;
+  }
+  .hero-intro.out{opacity:0!important;visibility:hidden!important;}
+  .intro-writing{
+    width:100%!important;
+    padding:0 28px!important;
+    font-family:"Cormorant Garamond",serif!important;
+    font-size:clamp(48px,13vw,62px)!important;
+    line-height:.94!important;
+    font-style:italic!important;
+    font-weight:400!important;
+    letter-spacing:-.04em!important;
+    text-align:center!important;
+    color:#756f68!important;
+  }
+  .intro-char{
+    display:inline-block;
+    opacity:0;
+    transform:translateY(7px);
+    filter:blur(2px);
+    animation:introWriteChar .34s cubic-bezier(.22,1,.36,1) forwards;
+    animation-delay:calc(var(--i) * .105s + .18s);
+  }
+  .intro-space{display:inline-block;width:.22em;}
+  @keyframes introWriteChar{
+    from{opacity:0;transform:translateY(7px);filter:blur(2px)}
+    to{opacity:1;transform:none;filter:none}
+  }
+
+  /* 메인 사진 위 완성 문구: 처음엔 숨김, 사진이 나타난 뒤 흰색으로 전체 등장 */
+  .title-en,
+  .title-en .write-char,
+  .title-en .write-space{
+    color:#ffffff!important;
+  }
+  .title-en{
+    bottom:43px!important;
+    left:34px!important;
+    right:auto!important;
+    opacity:0!important;
+    transform:translateY(10px)!important;
+    text-shadow:0 2px 18px rgba(50,46,42,.30)!important;
+    transition:opacity .9s ease .35s,transform .9s cubic-bezier(.22,1,.36,1) .35s!important;
+  }
+  body.hero-entered .title-en{
+    opacity:1!important;
+    transform:none!important;
+    color:#ffffff!important;
+  }
+  /* 이전 글자별 재등장 애니메이션 무효화 */
+  body.hero-entered .title-en .write-char{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+    filter:none!important;
+  }
+
+  @media (max-width:360px){
+    .hero-photo{left:18px!important;right:18px!important;width:calc(100% - 36px)!important;}
+    .hero:after{left:18px!important;right:18px!important;}
+    .title-en{left:22px!important;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .intro-char{animation:none!important;opacity:1!important;transform:none!important;filter:none!important;}
+    .hero-photo,.title-en{transition:none!important;}
+  }
+</style>
+
+
+<style id="image-color-and-closing-fix">
+  /* 모든 사진은 원본 컬러 유지 */
+  .hero-photo,
+  .profile-photo,
+  .photo-slot,
+  .moment-photo,
+  .timeline .moment:nth-child(3) .moment-photo{
+    filter:none!important;
+  }
+  .js .hero-photo,
+  body.hero-entered .hero-photo{
+    filter:none!important;
+  }
+
+  /* 타임라인 사진: 살짝 작고 정돈된 에디토리얼 크기 */
+  .moment-photo-wrap{
+    margin-top:16px!important;
+    display:flex!important;
+    justify-content:center!important;
+  }
+  .moment-photo,
+  .timeline .moment:nth-child(3) .moment-photo{
+    width:78%!important;
+    max-width:210px!important;
+    height:auto!important;
+    aspect-ratio:auto!important;
+    object-fit:contain!important;
+    object-position:center!important;
+    margin:0 auto!important;
+    border-radius:10px!important;
+    box-shadow:0 10px 24px rgba(91,84,77,.08)!important;
+    border:1px solid #ece8e2!important;
+    background:#fff!important;
+  }
+
+  /* 하단 일러스트: 흐림/가림 제거 + 상단 문구와 여백 확보 */
+  .closing-photo{
+    height:640px!important;
+    background:#f3f1ed!important;
+    padding:0!important;
+  }
+  .closing-photo:after{
+    background:none!important;
+    display:none!important;
+  }
+  .closing-illustration{
+    display:block!important;
+    z-index:1!important;
+    width:96%!important;
+    height:72%!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+    margin-top:auto!important;
+    opacity:1!important;
+    filter:none!important;
+  }
+  .closing-photo .closing-copy{
+    top:46px!important;
+    z-index:2!important;
+  }
+  .closing-photo h2{
+    margin-bottom:18px!important;
+  }
+  .closing-photo span{
+    display:block!important;
+    margin-top:14px!important;
+  }
+</style>
+
 </head>
 <body>
 
@@ -1730,11 +1909,11 @@
 <main class="page">
   <header class="hero" data-photo-slot="hero">
     <div class="hero-intro" id="heroIntro" aria-hidden="true">
-      <div class="intro-stack" aria-hidden="true"></div>
+      <div class="intro-writing" id="introWriting" aria-hidden="true"></div>
     </div>
     <p class="eyebrow">A quiet beginning</p>
     <img class="hero-photo" src="./images/main.webp" alt="두 사람이 함께 촬영한 메인 커플 사진" />
-    <h1 class="title-en">One fine day.</h1>
+    <h1 class="title-en">We're getting<br>married.</h1>
     <p class="hero-names"><span data-a>하늘</span> <em style="color:var(--coral);font-style:normal">×</em> <span data-b>다온</span></p>
     <p class="hero-date"><span data-date>2029.02.14.</span> · <span data-time>오후 3시</span></p>
   </header>
@@ -1978,33 +2157,31 @@
   let heroIntroDone=false;
 
   function prepareHeroWriting(){
-    const title=document.querySelector('.title-en');
-    if(!title || title.dataset.writingReady) return;
-    title.dataset.writingReady='1';
+    const introTitle=document.querySelector('#introWriting');
+    if(!introTitle || introTitle.dataset.writingReady) return;
+    introTitle.dataset.writingReady='1';
 
     const source="We're getting\nmarried.";
-    title.innerHTML='';
+    introTitle.innerHTML='';
     let index=0;
 
     [...source].forEach(ch=>{
       if(ch==='\n'){
-        const br=document.createElement('span');
-        br.className='write-break';
-        title.appendChild(br);
+        introTitle.appendChild(document.createElement('br'));
         return;
       }
       if(ch===' '){
         const space=document.createElement('span');
-        space.className='write-space';
+        space.className='intro-space';
         space.innerHTML='&nbsp;';
-        title.appendChild(space);
+        introTitle.appendChild(space);
         return;
       }
       const span=document.createElement('span');
-      span.className='write-char';
+      span.className='intro-char';
       span.style.setProperty('--i', index++);
       span.textContent=ch;
-      title.appendChild(span);
+      introTitle.appendChild(span);
     });
   }
 
@@ -2025,7 +2202,7 @@
 
   if(prefersReducedMotion){enterHero()}
   else{
-    window.addEventListener('load',()=>setTimeout(enterHero,2850),{once:true});
+    window.addEventListener('load',()=>setTimeout(enterHero,3200),{once:true});
     ['pointerdown','touchstart','keydown','wheel'].forEach(evt=>{
       window.addEventListener(evt,enterHero,{once:true,passive:true});
     });
