@@ -1343,7 +1343,45 @@
       section{padding-left:25px;padding-right:25px}
     }
 
-  </style>
+  
+    /* gallery lightbox: image only */
+    #galleryDialog{
+      padding:0!important;
+      background:transparent!important;
+      border:0!important;
+      box-shadow:none!important;
+      overflow:visible!important;
+    }
+    #galleryDialog .gallery-modal{
+      display:block!important;
+      padding:0!important;
+      margin:0!important;
+      background:transparent!important;
+    }
+    #galleryDialog .gallery-stage{
+      margin:0!important;
+      padding:0!important;
+      background:transparent!important;
+      box-shadow:none!important;
+      border-radius:0!important;
+      overflow:visible!important;
+    }
+    #galleryDialog .gallery-stage img{
+      display:block!important;
+      width:auto!important;
+      max-width:92vw!important;
+      height:auto!important;
+      max-height:88svh!important;
+      margin:0 auto!important;
+      object-fit:contain!important;
+      background:transparent!important;
+    }
+    #galleryDialog .gallery-meta,
+    #galleryDialog .gallery-hint{
+      display:none!important;
+    }
+
+</style>
 
 <style id="warm-gray-theme">
   /* =========================================================
