@@ -1609,6 +1609,114 @@
     color:#ffffff!important;
     text-shadow:0 2px 18px rgba(0,0,0,.22)!important;
   }
+
+
+    /* =========================================================
+       FINAL MINIMAL WHITE FIXES
+       intro handwriting / image visibility / closing illustration
+       ========================================================= */
+
+    /* 오프닝: 웜그레이로 한 글자씩 쓰이고, 메인 사진이 열린 뒤 흰색으로 전환 */
+    .title-en,
+    .title-en .write-char,
+    .title-en .write-space{
+      color:#756f68!important;
+    }
+    .title-en{
+      text-shadow:none!important;
+      transition:
+        color .95s ease .20s,
+        text-shadow .95s ease .20s,
+        transform 1.25s cubic-bezier(.22,1,.36,1)!important;
+    }
+    body.hero-entered .title-en,
+    body.hero-entered .title-en .write-char,
+    body.hero-entered .title-en .write-space{
+      color:#fff!important;
+    }
+    body.hero-entered .title-en{
+      text-shadow:0 2px 18px rgba(50,46,42,.28)!important;
+    }
+    /* 사진이 등장할 때 완성된 제목도 한 번 더 부드럽게 떠오름 */
+    body.hero-entered .title-en .write-char{
+      animation:finalWhiteTitle .82s cubic-bezier(.22,1,.36,1) both!important;
+      animation-delay:calc(var(--i) * .018s + .16s)!important;
+    }
+    @keyframes finalWhiteTitle{
+      from{opacity:.28;transform:translateY(7px);filter:blur(1.8px)}
+      to{opacity:1;transform:translateY(0);filter:none}
+    }
+
+    /* 프로필 / 갤러리: 테마의 background !important가 사진을 가리지 않도록 */
+    .profile-photo,
+    .photo-slot{
+      background-color:#ece9e4!important;
+    }
+    .profile-photo[style*="background-image"],
+    .photo-slot[style*="background-image"]{
+      background-repeat:no-repeat!important;
+      background-size:cover!important;
+      background-position:center!important;
+    }
+
+    /* 맨 아래: 배경사진 대신 기존 일러스트 엔딩 */
+    .closing-photo{
+      height:620px!important;
+      padding:0!important;
+      background:#f1efeb!important;
+      color:#57514b!important;
+      display:flex!important;
+      flex-direction:column!important;
+      align-items:center!important;
+      justify-content:flex-end!important;
+      overflow:hidden!important;
+    }
+    .closing-photo:after{
+      content:""!important;
+      position:absolute!important;
+      inset:0!important;
+      background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.66) 82%)!important;
+      z-index:1!important;
+      pointer-events:none!important;
+    }
+    .closing-illustration{
+      display:block!important;
+      position:relative!important;
+      z-index:1!important;
+      width:96%!important;
+      height:77%!important;
+      object-fit:contain!important;
+      object-position:center bottom!important;
+      margin-top:auto!important;
+      opacity:1!important;
+      transform:none!important;
+      filter:grayscale(20%) saturate(.82)!important;
+    }
+    .closing-photo .closing-copy{
+      position:absolute!important;
+      z-index:2!important;
+      top:54px!important;
+      left:26px!important;
+      right:26px!important;
+      color:#5d5751!important;
+      text-shadow:none!important;
+      text-align:center!important;
+    }
+    .closing-photo h2{
+      color:#5d5751!important;
+      font-size:18px!important;
+      line-height:2.05!important;
+    }
+    .closing-photo span{
+      color:#938b83!important;
+      font-size:8px!important;
+      letter-spacing:.26em!important;
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      body.hero-entered .title-en .write-char{animation:none!important}
+    }
+
 </style>
 
 </head>
@@ -1853,11 +1961,19 @@
     dateText: '2029.02.14.', dateLong: '2029년 2월 14일 수요일', timeText: '오후 3시',
     venue: '합정 웨딩시그니쳐 0층 블룸홀', address: '서울 마포구 양화로 87',
     /* 배포 구조: projects/minimal-white/index.html / wedding.mp3 / images/* */
-    photos: { hero:'./images/main.webp', profileA:'./images/profile_groom.webp', profileB:'./images/profile_bride.webp', gallery1:'./images/gallery_01.webp', gallery2:'./images/gallery_02.webp', gallery3:'./images/gallery_03.webp', gallery4:'./images/gallery_04.webp', gallery5:'./images/gallery_05.webp', gallery6:'./images/gallery_06.webp', gallery7:'./images/gallery_07.webp', gallery8:'./images/gallery_08.webp', gallery9:'./images/gallery_09.webp', gallery10:'./images/gallery_10.webp', gallery11:'./images/gallery_11.webp', closing:'./images/closing.webp' }
+    photos: { hero:'./images/main.webp', profileA:'./images/profile_groom.webp', profileB:'./images/profile_bride.webp', gallery1:'./images/gallery_01.webp', gallery2:'./images/gallery_02.webp', gallery3:'./images/gallery_03.webp', gallery4:'./images/gallery_04.webp', gallery5:'./images/gallery_05.webp', gallery6:'./images/gallery_06.webp', gallery7:'./images/gallery_07.webp', gallery8:'./images/gallery_08.webp', gallery9:'./images/gallery_09.webp', gallery10:'./images/gallery_10.webp', gallery11:'./images/gallery_11.webp', closing:'' }
   };
   const all=(s)=>document.querySelectorAll(s); all('[data-a]').forEach(e=>e.textContent=CONFIG.personA); all('[data-b]').forEach(e=>e.textContent=CONFIG.personB); all('[data-date]').forEach(e=>e.textContent=CONFIG.dateText); all('[data-date-long]').forEach(e=>e.textContent=CONFIG.dateLong); all('[data-time]').forEach(e=>e.textContent=CONFIG.timeText); all('[data-venue]').forEach(e=>e.textContent=CONFIG.venue); all('[data-address]').forEach(e=>e.textContent=CONFIG.address); document.title=`${CONFIG.personA} ♥ ${CONFIG.personB} | 2029.02.14`;
   const encoded=encodeURIComponent(CONFIG.address); document.querySelector('#naverMap').href=`https://map.naver.com/p/search/%ED%95%A9%EC%A0%95%20%EC%9B%A8%EB%94%A9%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B3%90%200%EC%B8%B5%20%EB%B8%94%EB%A3%B8%ED%99%80%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%91%ED%99%94%EB%A1%9C%2087`; document.querySelector('#kakaoMap').href=`https://map.kakao.com/?q=%ED%95%A9%EC%A0%95%20%EC%9B%A8%EB%94%A9%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B3%90%200%EC%B8%B5%20%EB%B8%94%EB%A3%B8%ED%99%80%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%91%ED%99%94%EB%A1%9C%2087`;
-  Object.entries(CONFIG.photos).forEach(([key,src])=>{if(!src)return;const slot=document.querySelector(`[data-photo-slot="${key}"]`);if(!slot)return;slot.style.backgroundImage=`url("${src}")`;slot.style.backgroundSize='cover';slot.style.backgroundPosition='center';if(key==='closing'){const art=slot.querySelector('.closing-illustration');if(art)art.style.display='none'}else if(key!=='hero'){slot.textContent=''}});
+  Object.entries(CONFIG.photos).forEach(([key,src])=>{
+    if(!src)return;
+    const slot=document.querySelector(`[data-photo-slot="${key}"]`);
+    if(!slot)return;
+    slot.style.setProperty('background-image',`url("${src}")`,'important');
+    slot.style.setProperty('background-size','cover','important');
+    slot.style.setProperty('background-position','center','important');
+    if(key!=='hero' && key!=='closing') slot.textContent='';
+  });
   const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let heroIntroDone=false;
 
