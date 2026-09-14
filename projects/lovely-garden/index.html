@@ -2321,6 +2321,191 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
 
 </style>
 
+
+<style id="sky-garden-modern-theme">
+/* =========================================================
+   SKY GARDEN — MODERN OPEN-AIR EDITION
+   Minimal White와 구분되는 면 분할 / 비대칭 사진 / 정보 보드 중심
+   ========================================================= */
+:root{
+  --sg-sky:#dff3ff;
+  --sg-sky-2:#ccecff;
+  --sg-blue:#78b9dc;
+  --sg-blue-deep:#3e6f88;
+  --sg-green:#9dbb9d;
+  --sg-ink:#354851;
+  --sg-muted:#7d9099;
+  --sg-line:#d9e9f1;
+  --sg-soft:#f4fbff;
+}
+
+/* 기존 플라워 장식 제거 */
+.greeting:before,.profiles:before,.calendar-wrap:before,.story:before,.location:before,.account:before,.guestbook:before,
+.greeting:after,.profiles:after,.story:after,.wedding-info:after,.hero:after,.closing-photo:before{display:none!important}
+.greeting .mini-flower{display:none!important}
+.hero .eyebrow:after,.month:after{content:none!important;display:none!important}
+.footer-heart{display:none!important}
+
+body{background:#eaf4f9!important}
+.page{width:min(100%,430px)!important;background:#fff!important;box-shadow:0 0 34px rgba(58,94,112,.08)!important}
+section{overflow:hidden!important}
+
+/* HERO — 타이포를 중앙이 아닌 좌측 하단으로 */
+.hero{height:100svh!important;min-height:700px!important;background:#bfe6fa!important;padding:0!important}
+.hero-photo{object-position:center 46%!important;filter:saturate(.92) brightness(1.05)!important}
+.hero:before{
+  background:linear-gradient(180deg,rgba(95,173,214,.08) 0%,rgba(255,255,255,0) 45%,rgba(39,79,99,.35) 100%)!important;
+}
+.eyebrow{
+  top:28px!important;left:24px!important;transform:none!important;width:auto!important;
+  font-size:9px!important;letter-spacing:.22em!important;text-align:left!important;color:#fff!important;
+}
+.title-en{
+  left:24px!important;right:24px!important;top:auto!important;bottom:132px!important;transform:none!important;
+  text-align:left!important;font-family:"Cormorant Garamond",serif!important;font-size:58px!important;
+  line-height:.92!important;letter-spacing:-.035em!important;font-style:italic!important;
+}
+.hero-names{
+  top:auto!important;left:24px!important;bottom:78px!important;writing-mode:horizontal-tb!important;
+  font-size:14px!important;letter-spacing:.06em!important;display:flex!important;gap:8px!important;align-items:center!important;
+}
+.hero-date{
+  right:24px!important;bottom:38px!important;writing-mode:horizontal-tb!important;
+  font-size:10px!important;letter-spacing:.12em!important;
+}
+.hero-intro{background:linear-gradient(180deg,#b9e3f8,#dff3ff)!important;backdrop-filter:none!important}
+
+/* 공통 — 중앙 정렬에서 벗어나 좌측 정렬 */
+section{padding:88px 26px!important}
+.section-label{
+  text-align:left!important;margin:0 0 14px!important;font-size:9px!important;letter-spacing:.24em!important;
+  font-weight:700!important;color:var(--sg-blue-deep)!important;
+}
+.section-title{
+  text-align:left!important;font-family:"Gowun Batang",serif!important;font-size:23px!important;line-height:1.55!important;
+  color:var(--sg-ink)!important;margin-bottom:22px!important;
+}
+.body-copy{text-align:left!important;font-size:14px!important;line-height:2.05!important;color:#667d88!important}
+
+/* 인사말 — 하늘색 큰 면 + 얇은 라인 */
+.greeting{background:var(--sg-soft)!important;padding-top:96px!important;padding-bottom:96px!important}
+.greeting .section-label:before{content:"";display:inline-block;width:32px;height:1px;background:var(--sg-blue);vertical-align:middle;margin-right:10px}
+.greeting .quote{
+  text-align:left!important;margin:34px 0 0!important;padding:18px 0 0!important;border-top:1px solid var(--sg-line)!important;
+  color:#7c98a6!important;font-size:9px!important;letter-spacing:.15em!important;
+}
+
+/* 프로필 — 원형 대신 세로 카드 */
+.profiles{background:#fff!important;padding:82px 22px 94px!important}
+.profile-grid{grid-template-columns:1fr 1fr!important;gap:10px!important;text-align:left!important}
+.profile-grid article{background:var(--sg-soft)!important;padding:10px 10px 18px!important}
+.profile-photo{
+  aspect-ratio:4/5!important;border-radius:0!important;border:0!important;box-shadow:none!important;margin-bottom:16px!important;
+  background-color:#e8f5fb!important;
+}
+.profile-name{font-size:16px!important;margin:0 0 8px!important;text-align:left!important;color:var(--sg-ink)!important}
+.profile-tags,.profile-promise{text-align:left!important}
+.profile-tags{font-size:9px!important;line-height:1.7!important}
+.profile-promise{font-size:11px!important;line-height:1.75!important;margin-top:10px!important}
+
+/* DATE — 섹션 전체를 하늘색 패널로, 내부 요소는 화이트 카드 느낌 */
+.calendar-wrap{background:var(--sg-sky)!important;padding:86px 22px!important}
+.calendar-wrap .section-label,.calendar-wrap .section-title{text-align:center!important}
+.calendar-photo-wrap{width:100%!important;margin:0 auto 26px!important}
+.calendar-photo{border-radius:0!important;box-shadow:none!important}
+.month{font-family:"Cormorant Garamond",serif!important;font-size:40px!important;color:var(--sg-blue-deep)!important}
+.calendar{
+  background:#fff!important;margin:30px 0 0!important;padding:26px 16px!important;gap:6px 4px!important;
+  box-shadow:none!important;color:#506976!important;
+}
+.calendar b{color:#9ab0ba!important}.calendar span{height:32px!important}
+.calendar .wedding-day{background:var(--sg-blue)!important;box-shadow:none!important}
+.calendar .wedding-day:after{display:none!important}
+.countdown{background:#fff!important;border-top:1px solid var(--sg-line)!important;padding:18px 0 0!important;margin-top:0!important}
+.count-box{border-right-color:var(--sg-line)!important}
+.calendar-wrap .btn.outline{border-radius:0!important;background:var(--sg-blue-deep)!important;padding:14px 22px!important}
+
+/* STORY — 타임라인 선 제거, 각 연도를 블록으로 */
+.story{background:#fff!important;padding:92px 26px!important}
+.story-card .section-title{text-align:left!important;margin-bottom:34px!important}
+.timeline{display:grid!important;gap:12px!important}
+.moment{
+  display:block!important;background:var(--sg-soft)!important;padding:22px!important;border:0!important;
+}
+.moment:not(:last-child):before{display:none!important}
+.year{display:block!important;margin-bottom:10px!important;color:var(--sg-blue-deep)!important;font-weight:700!important}
+.moment h3{font-size:14px!important;margin-bottom:8px!important}.moment p{font-size:11px!important}
+.moment-photo-wrap{justify-content:flex-start!important;margin-top:16px!important}
+.moment-photo,.timeline .moment:nth-child(3) .moment-photo{width:100%!important;max-width:none!important;border-radius:0!important;box-shadow:none!important;border:0!important}
+
+/* GALLERY — 비대칭 에디토리얼 그리드 */
+.gallery{background:#fff!important;padding:90px 0!important}
+.gallery .section-label,.gallery .section-title{margin-left:26px!important;margin-right:26px!important;text-align:left!important}
+.gallery-grid{
+  display:grid!important;grid-template-columns:repeat(6,1fr)!important;gap:6px!important;padding:0 6px!important;
+}
+.photo-slot{border-radius:0!important;min-height:180px!important}
+.gallery-grid .photo-slot:nth-child(1){grid-column:1/7!important;min-height:460px!important}
+.gallery-grid .photo-slot:nth-child(2),.gallery-grid .photo-slot:nth-child(5),.gallery-grid .photo-slot:nth-child(8){grid-column:span 4!important;min-height:260px!important}
+.gallery-grid .photo-slot:nth-child(3),.gallery-grid .photo-slot:nth-child(6),.gallery-grid .photo-slot:nth-child(9){grid-column:span 2!important;min-height:260px!important}
+.gallery-grid .photo-slot:nth-child(4),.gallery-grid .photo-slot:nth-child(7),.gallery-grid .photo-slot:nth-child(10),.gallery-grid .photo-slot:nth-child(11){grid-column:span 3!important;min-height:220px!important}
+.gallery-more-wrap{padding-top:22px!important}.gallery-more-btn{border-radius:0!important;padding:12px 24px!important}
+
+/* LOCATION — 지도 크게, 텍스트는 분리 */
+.location{background:var(--sg-soft)!important;padding:88px 0 0!important;border:0!important}
+.location>.section-label,.location>.section-title{margin-left:26px!important;margin-right:26px!important}
+.venue-card{margin-top:28px!important;border-radius:0!important;box-shadow:none!important;background:#fff!important}
+.map-art{height:330px!important;border-radius:0!important;filter:none!important}
+.venue-info{padding:28px 26px 30px!important;text-align:left!important}
+.venue-name{font-size:17px!important}.venue-address{font-size:11px!important}
+.button-row{gap:8px!important}.button-row .btn{border-radius:0!important;background:#fff!important;border:1px solid var(--sg-line)!important}
+.notice{margin:0!important;border:0!important;border-top:1px solid var(--sg-line)!important;background:#fff!important;padding:24px 26px!important;text-align:left!important}
+
+/* GUIDE — 스와이프 카드 대신 세로 정보 보드 */
+.wedding-info{background:var(--sg-sky)!important;padding:86px 22px!important}
+.wedding-info .section-label{text-align:left!important}
+.info-scroll{display:grid!important;gap:1px!important;overflow:visible!important;padding:0!important;background:rgba(255,255,255,.55)!important}
+.info-card{
+  min-width:0!important;display:grid!important;grid-template-columns:54px 1fr!important;grid-template-rows:auto auto!important;
+  column-gap:14px!important;text-align:left!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:24px!important;background:#fff!important;
+}
+.info-no{grid-row:1/3!important;font-size:28px!important;line-height:1!important;color:var(--sg-blue)!important}
+.info-card h3{margin:0 0 8px!important;font-size:15px!important}.info-card p{margin:0!important;font-size:11px!important;line-height:1.85!important}
+
+/* ACCOUNT */
+.account{background:#fff!important;padding:90px 26px!important}
+.account .section-title,.account .body-copy{text-align:left!important}
+.account-list{margin-top:30px!important}.account-item{border-bottom:1px solid var(--sg-line)!important}
+.account-head{padding:18px 0!important}.account-number{border-radius:0!important;background:var(--sg-soft)!important}
+
+/* GUESTBOOK — 하늘색 면으로 구분 */
+.guestbook{background:var(--sg-soft)!important;padding:88px 26px 100px!important}
+.guestbook .section-title,.guestbook .guest-intro{text-align:left!important}
+.guest-write-wrap{text-align:left!important}
+.guest-write-btn,.guest-more-btn{border-radius:0!important}
+.guest-message{padding:20px 0!important}.guest-message p{font-size:12px!important}
+
+/* CLOSING — 장식 대신 큰 하늘색 면 + 일러스트 */
+.closing-photo{height:620px!important;background:var(--sg-sky)!important}
+.closing-photo:after{background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.36) 82%)!important}
+.closing-photo .closing-copy{top:50px!important;left:26px!important;right:26px!important;text-align:left!important;color:var(--sg-blue-deep)!important}
+.closing-photo h2{font-size:22px!important;line-height:1.75!important}.closing-photo span{font-size:8px!important;letter-spacing:.18em!important}
+.closing-illustration{width:92%!important;height:74%!important;transform:none!important}
+.closing-photo.reveal.on .closing-illustration,.closing-photo.on .closing-illustration{transform:none!important}
+footer{background:#fff!important;border-top:0!important;padding:48px 20px 100px!important}
+
+/* 컨트롤도 각진 형태로 통일 */
+.bottom-bar{border-radius:0!important;width:min(calc(100% - 24px),406px)!important}
+.bottom-bar .btn{border-radius:0!important}.bottom-bar .primary{background:var(--sg-blue-deep)!important}
+.music-toggle{border-radius:0!important;width:40px!important;height:40px!important}
+
+@media (max-width:360px){
+  .title-en{font-size:50px!important}
+  .gallery-grid .photo-slot:nth-child(n){min-height:190px!important}
+  .gallery-grid .photo-slot:nth-child(1){min-height:420px!important}
+}
+</style>
+
 </head>
 <body>
 
@@ -2334,7 +2519,7 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
     <div class="hero-intro" id="heroIntro" aria-hidden="true">
       <div class="intro-writing" id="introWriting" aria-hidden="true"></div>
     </div>
-    <p class="eyebrow">Sky Garden Wedding</p>
+    <p class="eyebrow">SKY GARDEN · 2029</p>
     <img class="hero-photo" src="./images/main.webp" alt="두 사람이 함께 촬영한 메인 커플 사진" />
     <h1 class="title-en">We're getting<br>married.</h1>
     <p class="hero-names"><span data-a>하늘</span> <em style="color:var(--coral);font-style:normal">×</em> <span data-b>다온</span></p>
@@ -2445,17 +2630,17 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
   </section>
 
   <section class="location reveal">
-    <p class="section-label">Open-air moment</p>
-    <h2 class="section-title">우리의 가든 웨딩</h2>
+    <p class="section-label">LOCATION</p>
+    <h2 class="section-title">하늘 아래, 우리가 만나는 곳</h2>
     <div class="venue-card">
       <div class="map-art embed"><iframe class="map-frame" title="합정 웨딩시그니쳐 0층 블룸홀 위치 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%91%ED%99%94%EB%A1%9C%2087&output=embed"></iframe></div>
       <div class="venue-info"><p class="venue-name" data-venue>합정 웨딩시그니쳐 0층 블룸홀</p><p class="venue-address" data-address>서울 마포구 양화로 87</p><div class="button-row"><a class="btn" id="naverMap" target="_blank" rel="noopener">네이버 지도</a><a class="btn" id="kakaoMap" target="_blank" rel="noopener">카카오맵</a></div></div>
     </div>
-    <div class="notice"><strong>우리의 가든 웨딩 안내</strong><br>우리의 가든 웨딩는 <strong>합정 웨딩시그니쳐 0층 블룸홀</strong>이며,<br>서울 마포구 양화로 87에 위치해 있습니다.<br></div>
+    <div class="notice"><strong>예식 장소 안내</strong><br><strong>합정 웨딩시그니쳐 0층 블룸홀</strong><br>서울 마포구 양화로 87에 위치해 있습니다.</div>
   </section>
 
   <section class="wedding-info reveal">
-    <p class="section-label" style="text-align:center">Garden guide</p>
+    <p class="section-label" style="text-align:center">WEDDING GUIDE</p>
     <div class="info-scroll">
       <article class="info-card"><span class="info-no">01</span><h3>포토부스</h3><p>오늘의 햇살과 웃음을 오래 간직할 수 있도록<br>포토부스를 준비했습니다.<br>정원 같은 하루의 한 장면을 남겨주세요.</p></article>
       <article class="info-card"><span class="info-no">02</span><h3>주차 안내</h3><p>예식장 주차장을 이용하실 수 있습니다.<br>야외의 여유로운 분위기를 충분히 즐기실 수 있도록<br>조금 일찍 도착해 주세요.</p></article>
@@ -2464,8 +2649,8 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
   </section>
 
   <section class="account reveal">
-    <p class="section-label">With love</p>
-    <h2 class="section-title">꽃처럼 전해지는 마음</h2>
+    <p class="section-label">ACCOUNT</p>
+    <h2 class="section-title">마음 전하실 곳</h2>
     <p class="body-copy" style="font-size:13px">멀리서도 따뜻한 마음을 보내주시는 분들을 위해<br>조심스럽게 계좌 정보를 안내드립니다.</p>
 
     <div class="account-list">
@@ -2498,8 +2683,8 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
   </section>
 
 <section class="guestbook reveal" id="guestbook">
-    <p class="section-label">Garden notes</p>
-    <h2 class="section-title">정원에 남기는 한마디</h2>
+    <p class="section-label">MESSAGES</p>
+    <h2 class="section-title">축하의 말 남기기</h2>
     <p class="guest-intro">
       오래도록 기억될 오늘의 마음을,<br>
       두 사람에게 따뜻한 축하 한마디로 남겨주세요.
@@ -2517,8 +2702,8 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
     </div>
   </section>
 
-  <section class="closing-photo reveal" data-photo-slot="closing"><img class="closing-illustration" src="./images/closing_illustration.webp" alt="손을 잡고 웃고 있는 단발과 숏컷 단발의 두 신부 일러스트" /><div class="closing-copy"><span>OUR SKY, OUR GARDEN</span><h2>같은 하늘 아래<br>사계절을 함께 피워가겠습니다.</h2></div></section>
-  <footer><div class="footer-heart">♥</div><h2 class="footer-title"><span data-a>하늘</span> & <span data-b>다온</span></h2><p class="footer-copy">THANK YOU FOR BLOOMING WITH US</p></footer>
+  <section class="closing-photo reveal" data-photo-slot="closing"><img class="closing-illustration" src="./images/closing_illustration.webp" alt="손을 잡고 웃고 있는 단발과 숏컷 단발의 두 신부 일러스트" /><div class="closing-copy"><span>TOGETHER, UNDER THE SAME SKY</span><h2>같은 하늘을 바라보며<br>오래 함께하겠습니다.</h2></div></section>
+  <footer><div class="footer-heart">♥</div><h2 class="footer-title"><span data-a>하늘</span> & <span data-b>다온</span></h2><p class="footer-copy">THANK YOU FOR CELEBRATING WITH US</p></footer>
 </main>
 
 <nav class="bottom-bar" aria-label="빠른 메뉴"><button class="btn" id="shareBtn">↗ 초대장 보내기</button><button class="btn primary" id="bottomGuest">축하의 말 남기기</button></nav>
@@ -2539,7 +2724,7 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
   <div class="guest-modal">
     <button class="close guest-close" id="guestClose" type="button" aria-label="닫기">×</button>
     <p class="guest-modal-label">WITH LOVE</p>
-    <h2>정원에 남기는 한마디 남기기</h2>
+    <h2>축하의 말 남기기</h2>
     <p class="guest-modal-copy">두 사람에게 따뜻한 마음을 남겨주세요.</p>
     <form id="guestForm" class="guest-form">
       <label>
@@ -2820,7 +3005,7 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
     if (typeof guestDialog.close === 'function') guestDialog.close();
     else guestDialog.removeAttribute('open');
 
-    if (typeof toast === 'function') toast('정원에 남기는 한마디을 남겼어요 ♥');
+    if (typeof toast === 'function') toast('축하의 말을 남겼어요 ♥');
   });
 
   const guestVisibleCount = 2;
