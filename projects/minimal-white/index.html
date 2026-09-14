@@ -2014,6 +2014,25 @@
   }
 </style>
 
+
+<style id="hero-clean-white-final-fix">
+  /* 메인 히어로: 흰 배경 + 중앙 메인 사진 1장만 */
+  .hero{
+    background:#ffffff!important;
+    background-image:none!important;
+  }
+  .hero::before,.hero::after{
+    background-image:none!important;
+  }
+  /* 메인 사진 위 흰색 문구를 기존보다 20px 위로 */
+  .title-en{
+    bottom:190px!important;
+  }
+  @media (max-width:360px){
+    .title-en{bottom:185px!important;}
+  }
+</style>
+
 </head>
 <body>
 
@@ -2262,6 +2281,9 @@
   const encoded=encodeURIComponent(CONFIG.address); document.querySelector('#naverMap').href=`https://map.naver.com/p/search/%ED%95%A9%EC%A0%95%20%EC%9B%A8%EB%94%A9%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B3%90%200%EC%B8%B5%20%EB%B8%94%EB%A3%B8%ED%99%80%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%91%ED%99%94%EB%A1%9C%2087`; document.querySelector('#kakaoMap').href=`https://map.kakao.com/?q=%ED%95%A9%EC%A0%95%20%EC%9B%A8%EB%94%A9%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B3%90%200%EC%B8%B5%20%EB%B8%94%EB%A3%B8%ED%99%80%20%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%96%91%ED%99%94%EB%A1%9C%2087`;
   Object.entries(CONFIG.photos).forEach(([key,src])=>{
     if(!src)return;
+    /* 메인 사진은 <img class="hero-photo"> 한 장만 사용합니다.
+       hero 요소의 배경에는 같은 이미지를 다시 깔지 않습니다. */
+    if(key==='hero') return;
     const slot=document.querySelector(`[data-photo-slot="${key}"]`);
     if(!slot)return;
     slot.style.setProperty('background-image',`url("${src}")`,'important');
