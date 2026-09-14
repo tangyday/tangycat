@@ -80,11 +80,11 @@
     dialog[open]{animation:dialogIn .28s cubic-bezier(.22,1,.36,1)}dialog[open]::backdrop{animation:backdropIn .28s ease}@keyframes dialogIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}@keyframes backdropIn{from{background:rgba(31,36,31,0);backdrop-filter:blur(0)}to{background:rgba(31,36,31,.58);backdrop-filter:blur(3px)}}
     .photo-slot{transition:transform .35s ease,filter .35s ease}.photo-slot:active{transform:scale(.985)}
     @media (min-width:700px){.page{margin:28px auto;border-radius:0}.bottom-bar{bottom:24px}}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.scroll:after,dialog[open],dialog[open]::backdrop,.hero-intro,.intro-word,.intro-sub{animation:none}.account-body,.photo-slot,.profile-grid article,.timeline .moment,.gallery-grid .photo-slot,.info-scroll .info-card,.account-list .account-item,.guest-list .guest-message,.closing-photo .closing-copy,.closing-photo .closing-illustration{transition:none}.js .hero-photo,.js .eyebrow,.js .title-en,.js .hero-names,.js .hero-date,.js .scroll,.profile-grid article,.timeline .moment,.gallery-grid .photo-slot,.info-scroll .info-card,.account-list .account-item,.guest-list .guest-message,.closing-photo .closing-copy,.closing-photo .closing-illustration{opacity:1;transform:none;filter:none}.hero-intro{display:none}}
-  
+
     /* 한복 메인 사진 구도 보정 */
     .hero-photo{object-position:center 48%;}
 
-  
+
     /* cinematic opening */
     .hero{overflow:hidden}
     .hero-intro{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:linear-gradient(180deg,rgba(228,145,170,.34),rgba(255,221,232,.12) 45%,rgba(214,124,153,.38));backdrop-filter:blur(1px);transition:opacity .9s ease,visibility .9s ease}
@@ -137,11 +137,11 @@
     .closing-photo.reveal.on .closing-copy{transition-delay:.22s}
 
 
-  
+
     /* closing section visibility fix */
     .closing-photo.reveal{opacity:1;transform:none}
 
-  
+
     /* =========================================================
        SALON DE LETTER inspired editorial wedding style
        - existing content/data kept intact
@@ -497,7 +497,7 @@
       }
     }
 
-  
+
     /* story timeline photos */
     .moment-copy{display:block}
     .moment-photo-wrap{margin-top:14px}
@@ -516,7 +516,7 @@
       opacity:1;
     }
 
-  
+
     /* gallery expanded */
     .gallery-grid .photo-slot:nth-child(n+2){min-height:240px}
     .reveal.on .gallery-grid .photo-slot:nth-child(6){transition-delay:.62s}
@@ -525,7 +525,7 @@
     .reveal.on .gallery-grid .photo-slot:nth-child(9){transition-delay:.92s}
     .reveal.on .gallery-grid .photo-slot:nth-child(10){transition-delay:1.02s}
 
-  
+
     /* gallery lightbox */
     .photo-slot{cursor:pointer;position:relative;overflow:hidden}
     .photo-slot:after{
@@ -589,7 +589,7 @@
       color:rgba(255,255,255,.62);
     }
 
-  
+
     /* timeline photo: 원본 비율 유지 + 중앙 정렬 */
     .moment-photo{
       width:100%;
@@ -600,7 +600,7 @@
       background:#fff;
     }
 
-  
+
     /* 2022 timeline photo crop */
     .timeline .moment:nth-child(3) .moment-photo{
       width:100%;
@@ -610,7 +610,7 @@
       object-position:center center;
     }
 
-  
+
     /* embedded map */
     .map-art{
       overflow:hidden;
@@ -627,7 +627,7 @@
       border:0;
     }
 
-  
+
     /* gallery more */
     .gallery-grid .photo-slot.gallery-hidden{display:none}
     .gallery-grid.show-all .photo-slot.gallery-hidden{display:grid}
@@ -649,20 +649,20 @@
     }
     .gallery-more-btn:active{transform:scale(.98)}
 
-  
+
     .reveal.on .gallery-grid .photo-slot:nth-child(11){transition-delay:1.12s}
     .reveal.on .gallery-grid .photo-slot:nth-child(12){transition-delay:1.22s}
     .reveal.on .gallery-grid .photo-slot:nth-child(13){transition-delay:1.32s}
 
-  
+
     /* remove hero scroll indicator */
     .scroll{display:none!important}
 
-  
+
     /* remove hero venue label */
     .hero-venue{display:none!important}
 
-  
+
     /* calendar photo card */
     .calendar-photo-wrap{
       width:82%;
@@ -683,7 +683,7 @@
       box-shadow:0 12px 30px rgba(217,120,151,.12);
     }
 
-  
+
     /* background music */
     .music-toggle{
       position:fixed;
@@ -1898,6 +1898,28 @@
   }
 </style>
 
+
+<style id="intro-left-align-fix">
+  /* Opening typing text only: left aligned */
+  .hero-intro .intro-stack{
+    width:100% !important;
+    align-items:flex-start !important;
+    text-align:left !important;
+    padding-left:34px !important;
+    padding-right:38px !important;
+  }
+  .hero-intro .intro-word{
+    text-align:left !important;
+    width:100% !important;
+    white-space:normal !important;
+  }
+  @media (max-width:360px){
+    .hero-intro .intro-stack{
+      padding-left:22px !important;
+      padding-right:28px !important;
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -2226,7 +2248,7 @@
   tick();setInterval(tick,1000);
   const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.10,rootMargin:'0px 0px -8% 0px'});all('.reveal').forEach(e=>observer.observe(e));
   all('.account-head').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open'))); const toast=(msg)=>{const t=document.querySelector('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}; all('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{await navigator.clipboard.writeText(document.querySelector('#'+b.dataset.copy).textContent);toast('계좌번호를 복사했어요')}));
-  
+
 
 
 
