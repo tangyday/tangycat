@@ -3363,7 +3363,7 @@ body.hero-entered .hero-caption{opacity:1;transform:none}
     if(!slot)return;
     slot.style.setProperty('background-image',`url("${src}")`,'important');
     slot.style.setProperty('background-size','cover','important');
-    slot.style.setProperty('background-position','center','important');
+    slot.style.setProperty('background-position', key==='gallery1' ? 'center top' : 'center','important');
     if(key!=='hero' && key!=='closing') slot.textContent='';
   });
   const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
