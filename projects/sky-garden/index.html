@@ -3375,6 +3375,22 @@ body.hero-entered .hero-caption{opacity:1;transform:none}
   }
 </style>
 
+
+<style id="skygarden-date-text-color-match-v17">
+  /* 이전 nth-of-type 규칙보다 높은 우선순위로 실제 표시색 통일 */
+  .calendar-wrap > p.calendar-date-line:nth-of-type(2),
+  .calendar-wrap > #countdownLabel{
+    color:#6f777c !important;
+    opacity:1 !important;
+    text-shadow:none !important;
+  }
+
+  .calendar-wrap > p.calendar-date-line:nth-of-type(2) span{
+    color:inherit !important;
+    opacity:1 !important;
+  }
+</style>
+
 </head>
 <body>
 
