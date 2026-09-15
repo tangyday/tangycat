@@ -3047,6 +3047,47 @@ body.hero-entered .hero-caption{opacity:1;transform:none}
 }
 </style>
 
+
+<style id="gallery-closing-final-tweak-v4">
+  /* 햇살 아래 남긴 장면: 첫 번째 대표 사진은 살짝 작게 + 얼굴이 덜 잘리도록 위쪽 구도 */
+  .gallery-grid .photo-slot:first-child{
+    width:100%!important;
+    min-height:390px!important;
+    justify-self:stretch!important;
+    background-position:center 28%!important;
+  }
+
+  /* 맨 하단 일러스트: 크기를 줄여 상단 문구와 충분한 여백 확보 */
+  .closing-illustration{
+    width:84%!important;
+    height:66%!important;
+    object-fit:contain!important;
+    object-position:center bottom!important;
+  }
+
+  @media (max-width:360px){
+    .gallery-grid .photo-slot:first-child{
+      width:100%!important;
+      min-height:370px!important;
+      background-position:center 26%!important;
+    }
+    .closing-illustration{
+      width:82%!important;
+      height:64%!important;
+    }
+  }
+
+    /* BGM button: perfect circle */
+    .music-toggle{
+      width:40px!important;
+      height:40px!important;
+      min-width:40px!important;
+      min-height:40px!important;
+      padding:0!important;
+      border-radius:50%!important;
+      aspect-ratio:1/1;
+    }
+</style>
 </head>
 <body>
 
