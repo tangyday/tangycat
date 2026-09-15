@@ -3103,6 +3103,278 @@ body.hero-entered .hero-caption{opacity:1;transform:none}
   }
 </style>
 
+
+<style id="skygarden-leaf-accent-v9">
+  /* subtle garden leaf accents */
+  :root{
+    --leaf-green:#8fb39a;
+    --leaf-green-soft:#b8d1bf;
+  }
+
+  .section-label,
+  .section-title,
+  .venue-card,
+  .info-card,
+  .closing-copy,
+  .account .section-title,
+  .guestbook .section-title,
+  .calendar-wrap .section-title{
+    position:relative;
+  }
+
+  /* small leaf accent near selected labels */
+  .greeting .section-label::after,
+  .story .section-label::after,
+  .location .section-label::after,
+  .wedding-info .section-label::after,
+  .guestbook .section-label::after{
+    content:"🍃";
+    display:inline-block;
+    margin-left:7px;
+    font-size:12px;
+    line-height:1;
+    transform:translateY(1px) rotate(-10deg);
+    opacity:.8;
+    filter:saturate(.85);
+  }
+
+  /* editorial tiny leaf around important headings */
+  .greeting .section-title::before,
+  .location .section-title::before,
+  .account .section-title::before{
+    content:"❊";
+    position:absolute;
+    top:-18px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:10px;
+    color:var(--leaf-green-soft);
+    letter-spacing:0;
+  }
+
+  /* soft leaves at card corners */
+  .venue-card::before,
+  .info-card::before{
+    content:"🍃";
+    position:absolute;
+    top:14px;
+    right:14px;
+    font-size:13px;
+    opacity:.42;
+    transform:rotate(8deg);
+    pointer-events:none;
+  }
+
+  .info-card:nth-child(2)::before{ transform:rotate(-10deg); }
+  .info-card:nth-child(3)::before{ transform:rotate(14deg); }
+
+  /* closing section decorative tiny leaves */
+  .closing-photo .closing-copy::before,
+  .closing-photo .closing-copy::after{
+    content:"🍃";
+    position:absolute;
+    top:-18px;
+    font-size:14px;
+    opacity:.72;
+    pointer-events:none;
+  }
+  .closing-photo .closing-copy::before{
+    left:calc(50% - 54px);
+    transform:rotate(-12deg);
+  }
+  .closing-photo .closing-copy::after{
+    right:calc(50% - 54px);
+    transform:rotate(12deg) scaleX(-1);
+  }
+
+  /* account section tiny garden mood */
+  .account .section-label::after{
+    content:"☘︎";
+    display:inline-block;
+    margin-left:7px;
+    font-size:11px;
+    color:var(--leaf-green);
+    opacity:.85;
+  }
+
+  @media (max-width:460px){
+    .venue-card::before,
+    .info-card::before{font-size:12px;top:12px;right:12px}
+    .closing-photo .closing-copy::before,
+    .closing-photo .closing-copy::after{top:-16px;font-size:13px}
+  }
+</style>
+
+
+<style id="skygarden-leaf-refine-v10">
+  /* remove leaves from Wedding Guide and account section */
+  .wedding-info .section-label::after,
+  .account .section-label::after{
+    content:none !important;
+    display:none !important;
+  }
+
+  /* remove the two leaves above the final illustration text area */
+  .closing-photo .closing-copy::before,
+  .closing-photo .closing-copy::after{
+    content:none !important;
+    display:none !important;
+  }
+
+  /* add a small leaf accent above the final names */
+  footer .footer-title{
+    position:relative;
+    display:inline-block;
+    margin-top:18px !important;
+  }
+  footer .footer-title::before{
+    content:"🍃";
+    position:absolute;
+    left:50%;
+    top:-16px;
+    transform:translateX(-50%) rotate(-8deg);
+    font-size:12px;
+    line-height:1;
+    opacity:.78;
+    filter:saturate(.9);
+  }
+</style>
+
+
+<style id="skygarden-clover-v11">
+  /* remove the small green dot/ornament in the account section */
+  .account .section-title::before{
+    content:none !important;
+    display:none !important;
+  }
+
+  /* change the leaf above the final names to a four-leaf clover */
+  footer .footer-title::before{
+    content:"🍀" !important;
+    top:-17px !important;
+    transform:translateX(-50%) !important;
+    font-size:12px !important;
+    opacity:.82 !important;
+    filter:saturate(.95) !important;
+  }
+</style>
+
+
+<style id="skygarden-leaf-location-fix-v12">
+  /* gallery section: add subtle leaf icon */
+  .gallery .section-label::after{
+    content:"🍃" !important;
+    display:inline-block !important;
+    margin-left:7px !important;
+    font-size:12px !important;
+    line-height:1 !important;
+    transform:translateY(1px) rotate(-10deg) !important;
+    opacity:.8 !important;
+    filter:saturate(.85) !important;
+  }
+
+  /* location section: remove leaf icon and top ornament */
+  .location .section-label::after,
+  .location .section-title::before{
+    content:none !important;
+    display:none !important;
+  }
+
+  /* footer: restore previous leaf instead of clover */
+  footer .footer-title::before{
+    content:"🍃" !important;
+    top:-16px !important;
+    transform:translateX(-50%) rotate(-8deg) !important;
+    font-size:12px !important;
+    opacity:.78 !important;
+    filter:saturate(.9) !important;
+  }
+</style>
+
+
+<style id="skygarden-greeting-date-fix-v13">
+  /* 초대 문구 위쪽의 작은 연두색 장식 제거 */
+  .greeting .section-title::before{
+    content:none !important;
+    display:none !important;
+  }
+
+  /* The date 중앙 정렬 */
+  .calendar-wrap > .section-label{
+    display:block !important;
+    width:100% !important;
+    text-align:center !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+
+  /* 날짜/시간 문구와 카운트다운 안내 문구를 잘 보이는 연한 회색으로 */
+  .calendar-wrap .calendar-date-line{
+    color:#8f989d !important;
+    text-align:center !important;
+    opacity:1 !important;
+  }
+
+  .calendar-wrap #countdownLabel{
+    color:#8f989d !important;
+    text-align:center !important;
+    opacity:1 !important;
+  }
+</style>
+
+
+<style id="skygarden-date-align-visibility-fix-v14">
+  /* The date: 시각적으로 살짝 왼쪽으로 당겨 정확히 중앙에 보이도록 */
+  .calendar-wrap > .section-label{
+    display:block !important;
+    width:100% !important;
+    text-align:center !important;
+    transform:translateX(-6px) !important;
+  }
+
+  /* 날짜/시간 문구: 흐리지 않게 조금 더 진한 연회색 */
+  .calendar-wrap .calendar-date-line{
+    color:#727b80 !important;
+    opacity:1 !important;
+    font-weight:500 !important;
+    text-align:center !important;
+  }
+</style>
+
+
+<style id="skygarden-date-final-strong-fix-v15">
+  /* The date: 화면상 중앙이 되도록 더 확실히 왼쪽으로 이동 */
+  .calendar-wrap > .section-label{
+    position:relative !important;
+    left:-12px !important;
+    transform:none !important;
+    width:100% !important;
+    text-align:center !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+
+  /* 날짜/시간 문구: 흐리지 않도록 한 단계 더 선명하게 */
+  .calendar-wrap .calendar-date-line{
+    color:#5f676c !important;
+    opacity:1 !important;
+    font-size:13px !important;
+    font-weight:600 !important;
+    line-height:1.7 !important;
+    text-align:center !important;
+    text-shadow:none !important;
+  }
+</style>
+
+
+<style id="skygarden-date-text-color-match-v16">
+  .calendar-wrap .calendar-date-line,
+  .calendar-wrap #countdownLabel{
+    color:#5f676c !important;
+    opacity:1 !important;
+  }
+</style>
+
 </head>
 <body>
 
@@ -3157,7 +3429,7 @@ body.hero-entered .hero-caption{opacity:1;transform:none}
   <section class="calendar-wrap reveal">
     <p class="section-label">The date</p>
 <h2 class="month">February 2029</h2>
-    <p style="font-size:12px;color:rgba(255,255,255,.65)"><span data-date-long>2029년 2월 14일 수요일</span> · <span data-time>오후 3시</span></p>
+    <p class="calendar-date-line" style="font-size:12px"><span data-date-long>2029년 2월 14일 수요일</span> · <span data-time>오후 3시</span></p>
     <div class="calendar" aria-label="2029년 2월 달력">
       <b>SUN</b><b>MON</b><b>TUE</b><b>WED</b><b>THU</b><b>FRI</b><b>SAT</b>
       <span class="blank">0</span><span class="blank">0</span><span class="blank">0</span><span class="blank">0</span><span>1</span><span>2</span><span>3</span>
