@@ -3088,6 +3088,21 @@ body.hero-entered .hero-caption{opacity:1;transform:none}
       aspect-ratio:1/1;
     }
 </style>
+
+<style id="gallery-first-photo-top-focus-v7">
+  /* 햇살 아래 남긴 장면 첫 번째 사진: 미리보기에서 신랑 머리까지 보이도록 상단 중심으로 크롭 */
+  .gallery-grid .photo-slot:first-child{
+    background-position:center 6% !important;
+    background-size:cover !important;
+  }
+
+  @media (max-width:360px){
+    .gallery-grid .photo-slot:first-child{
+      background-position:center 4% !important;
+    }
+  }
+</style>
+
 </head>
 <body>
 
