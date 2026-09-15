@@ -2571,6 +2571,182 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
 @media (min-width:700px){.page{box-shadow:0 18px 70px rgba(83,139,166,.12)}}
 </style>
 
+
+<style id="guestbook-button-color-final-fix">
+  /* 축하의 말 남기기 버튼 */
+  .guest-write-btn{
+    background:#8fc8ea!important;
+    color:#fff!important;
+  }
+
+  /* 축하의 말 섹션 더보기 버튼: 섹션 배경과 동일 */
+  .guest-more-btn{
+    background:#fbfeff!important;
+    color:#5c8498!important;
+    border-color:#cfe8f3!important;
+  }
+</style>
+
+
+
+<style id="guestbook-gallery-layout-final-fix">
+  /* 축하의 말 남기기 버튼: 약간 둥글게 */
+  .guest-write-btn{
+    background:#8fc8ea!important;
+    color:#fff!important;
+    border-radius:14px!important;
+  }
+
+  /* 축하의 말 섹션 더보기 버튼: 섹션 배경과 동일 */
+  .guest-more-btn{
+    background:#fbfeff!important;
+    color:#5c8498!important;
+    border-color:#cfe8f3!important;
+  }
+
+  /* 햇살 아래 남긴 장면: 이미지가 빈 공간 없이 차곡차곡 붙어 보이도록 정리 */
+  .gallery-grid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+    padding:18px 14px 0!important;
+    align-items:start!important;
+  }
+  .gallery-grid .photo-slot{
+    min-height:210px!important;
+  }
+  .gallery-grid .photo-slot:first-child{
+    grid-column:auto!important;
+    grid-row:auto!important;
+    min-height:210px!important;
+  }
+  .gallery-grid .photo-slot:nth-child(2),
+  .gallery-grid .photo-slot:nth-child(3),
+  .gallery-grid .photo-slot:nth-child(n+4){
+    min-height:210px!important;
+  }
+</style>
+
+
+<style id="guestbook-gallery-layout-final-fix-v3">
+  /* 축하의 말 남기기 버튼: 다시 각진 형태 */
+  .guest-write-btn{
+    background:#8fc8ea!important;
+    color:#fff!important;
+    border-radius:0!important;
+  }
+
+  /* 갤러리: 첫 번째 이미지만 크게, 이후 이미지는 2열 */
+  .gallery-grid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+    padding:18px 14px 0!important;
+    align-items:start!important;
+  }
+  .gallery-grid .photo-slot{
+    min-height:220px!important;
+  }
+  .gallery-grid .photo-slot:first-child{
+    grid-column:1 / -1!important;
+    grid-row:auto!important;
+    min-height:460px!important;
+  }
+  .gallery-grid .photo-slot:nth-child(n+2){
+    min-height:220px!important;
+  }
+</style>
+
+
+<style id="guest-dialog-skygarden-popup-color-fix">
+  /* 축하의 말 남기기 팝업 색감: 스카이 가든 톤으로 정리 */
+  #guestDialog{
+    background:#ffffff!important;
+    box-shadow:0 24px 70px rgba(88,146,173,.18)!important;
+    border:1px solid #e2eef4!important;
+  }
+  #guestDialog::backdrop{
+    background:rgba(83,125,145,.24)!important;
+    backdrop-filter:blur(6px)!important;
+    -webkit-backdrop-filter:blur(6px)!important;
+  }
+  .guest-modal{
+    background:
+      radial-gradient(circle at 88% 8%, rgba(143,200,234,.24), transparent 28%),
+      linear-gradient(180deg,#fbfeff 0%, #f5fbfd 100%)!important;
+  }
+  .guest-close{
+    color:#6b9fbc!important;
+    background:#eef8fd!important;
+    border:1px solid #d8eaf3!important;
+  }
+  .guest-modal-label{
+    color:#7db6d8!important;
+  }
+  .guest-modal h2{
+    color:#456879!important;
+  }
+  .guest-modal-copy,
+  .guest-form label > span{
+    color:#6f8a97!important;
+  }
+  .guest-form input,
+  .guest-form textarea{
+    border:1px solid #d9eaf2!important;
+    background:#fbfeff!important;
+    color:#4e6b79!important;
+  }
+  .guest-form input::placeholder,
+  .guest-form textarea::placeholder{
+    color:#9cb3bf!important;
+  }
+  .guest-form input:focus,
+  .guest-form textarea:focus{
+    border-color:#8fc8ea!important;
+    background:#ffffff!important;
+    box-shadow:0 0 0 4px rgba(143,200,234,.18)!important;
+  }
+  .guest-submit{
+    background:#8fc8ea!important;
+    color:#ffffff!important;
+    box-shadow:0 10px 24px rgba(143,200,234,.24)!important;
+  }
+</style>
+
+
+<style id="gallery-two-column-final-fix-v5">
+  /* 갤러리: 첫 번째 이미지만 크게, 이후 이미지는 한 줄에 2개씩 */
+  .gallery-grid{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:8px!important;
+    padding:18px 14px 0!important;
+    align-items:start!important;
+  }
+  .gallery-grid .photo-slot{
+    grid-column:auto!important;
+    grid-row:auto!important;
+    min-height:220px!important;
+    border-radius:0!important;
+  }
+  .gallery-grid .photo-slot:first-child{
+    grid-column:1 / -1!important;
+    grid-row:auto!important;
+    min-height:460px!important;
+    border-radius:0!important;
+  }
+  .gallery-grid .photo-slot:nth-child(n+2){
+    grid-column:auto!important;
+    grid-row:auto!important;
+    min-height:220px!important;
+  }
+
+  /* 축하의 말 남기기 버튼은 각진 형태 유지 */
+  .guest-write-btn{
+    border-radius:0!important;
+  }
+</style>
+
 </head>
 <body>
 
