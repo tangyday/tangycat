@@ -2747,6 +2747,306 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
   }
 </style>
 
+
+<style id="editorial-cover-final">
+/* =========================================================
+   SKY GARDEN / EDITORIAL COVER HERO
+   - full-bleed photo 대신 사진 + white editorial field 구성
+   - 기존 섹션에는 영향 없음
+   ========================================================= */
+.hero{
+  position:relative!important;
+  height:100svh!important;
+  min-height:700px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#ffffff!important;
+  color:#355565!important;
+  isolation:isolate!important;
+}
+.hero:before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:0!important;
+  left:0!important;right:0!important;top:0!important;
+  height:72%!important;
+  background:linear-gradient(180deg,#dff3fb 0%,#edf9fe 100%)!important;
+  pointer-events:none!important;
+}
+.hero:after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:1!important;
+  top:74px!important;right:23px!important;
+  width:1px!important;height:calc(72% - 108px)!important;
+  background:rgba(255,255,255,.76)!important;
+  border:0!important;
+  pointer-events:none!important;
+}
+.hero-photo{
+  position:absolute!important;
+  z-index:1!important;
+  left:24px!important;
+  right:24px!important;
+  top:72px!important;
+  width:calc(100% - 48px)!important;
+  height:61%!important;
+  object-fit:cover!important;
+  object-position:center 46%!important;
+  filter:none!important;
+  opacity:0!important;
+  transform:translateY(18px) scale(.985)!important;
+  transition:opacity 1.05s ease .05s,transform 1.2s cubic-bezier(.22,1,.36,1) .05s!important;
+  box-shadow:none!important;
+}
+body.hero-entered .hero-photo{
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+}
+.eyebrow{
+  position:absolute!important;
+  z-index:3!important;
+  top:25px!important;
+  left:24px!important;
+  right:auto!important;
+  transform:none!important;
+  width:auto!important;
+  margin:0!important;
+  color:#5d8294!important;
+  font-size:8px!important;
+  line-height:1!important;
+  font-weight:700!important;
+  letter-spacing:.22em!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+.hero-issue{
+  position:absolute;
+  z-index:3;
+  top:24px;
+  right:24px;
+  font-family:"Cormorant Garamond",serif;
+  font-size:17px;
+  font-style:italic;
+  color:#6f94a5;
+  line-height:1;
+}
+.hero-sideword{
+  position:absolute;
+  z-index:3;
+  right:8px;
+  top:115px;
+  writing-mode:vertical-rl;
+  font-size:7px;
+  letter-spacing:.22em;
+  color:rgba(255,255,255,.78);
+}
+.title-en{
+  position:absolute!important;
+  z-index:4!important;
+  top:auto!important;
+  left:18px!important;
+  right:18px!important;
+  bottom:22.5%!important;
+  margin:0!important;
+  transform:translateY(18px)!important;
+  font-family:"Great Vibes",cursive!important;
+  font-size:clamp(58px,17vw,78px)!important;
+  line-height:.80!important;
+  font-style:normal!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  text-align:left!important;
+  color:#ffffff!important;
+  text-shadow:0 3px 18px rgba(46,82,99,.22)!important;
+  opacity:0!important;
+  transition:opacity .9s ease .35s,transform 1s cubic-bezier(.22,1,.36,1) .35s!important;
+  pointer-events:none!important;
+}
+.title-en br{display:block}
+.title-en .write-char,.title-en .write-space{color:inherit!important}
+body.hero-entered .title-en{
+  opacity:1!important;
+  transform:none!important;
+  color:#ffffff!important;
+}
+.hero-meta{
+  position:absolute;
+  z-index:4;
+  left:24px;
+  right:24px;
+  bottom:56px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  padding-top:14px;
+  border-top:1px solid #d8eaf2;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .8s ease .55s,transform .9s cubic-bezier(.22,1,.36,1) .55s;
+}
+body.hero-entered .hero-meta{opacity:1;transform:none}
+.hero-names{
+  position:static!important;
+  margin:0!important;
+  writing-mode:horizontal-tb!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  color:#38515f!important;
+  font-family:"Gowun Batang",serif!important;
+  font-size:17px!important;
+  font-weight:700!important;
+  letter-spacing:.06em!important;
+}
+.hero-names em{color:#8cb7ca!important;font-size:11px!important;margin:0!important}
+.hero-date{
+  position:static!important;
+  margin:0!important;
+  writing-mode:horizontal-tb!important;
+  color:#6d8a98!important;
+  font-size:9px!important;
+  line-height:1.6!important;
+  letter-spacing:.12em!important;
+  text-align:right!important;
+  white-space:nowrap!important;
+}
+.hero-caption{
+  position:absolute;
+  z-index:3;
+  left:24px;
+  bottom:107px;
+  margin:0;
+  color:#7a99a7;
+  font-size:7px;
+  line-height:1.75;
+  letter-spacing:.18em;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .75s ease .72s,transform .85s cubic-bezier(.22,1,.36,1) .72s;
+}
+body.hero-entered .hero-caption{opacity:1;transform:none}
+
+/* intro: 풀스크린 로고 애니메이션 대신 편집 디자인의 opening card */
+.hero-intro{
+  position:absolute!important;
+  inset:0!important;
+  z-index:20!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  background:#e8f6fc!important;
+  backdrop-filter:none!important;
+  transition:opacity .7s ease,visibility .7s ease!important;
+}
+.hero-intro:before{
+  content:"SKY GARDEN  ·  01"!important;
+  position:absolute!important;
+  display:block!important;
+  top:26px!important;
+  left:24px!important;
+  width:auto!important;height:auto!important;
+  border-radius:0!important;
+  background:none!important;
+  filter:none!important;
+  opacity:1!important;
+  color:#6e9aad!important;
+  font-size:8px!important;
+  font-weight:700!important;
+  letter-spacing:.22em!important;
+}
+.hero-intro:after{
+  content:""!important;
+  position:absolute!important;
+  display:block!important;
+  left:24px!important;right:24px!important;
+  bottom:28px!important;
+  width:auto!important;height:1px!important;
+  border-radius:0!important;
+  background:#c7e2ee!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.intro-writing{
+  width:100%!important;
+  padding:0 28px!important;
+  font-family:"Great Vibes",cursive!important;
+  font-size:clamp(52px,16vw,72px)!important;
+  line-height:.86!important;
+  font-style:normal!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  text-align:center!important;
+  color:#4f7f95!important;
+}
+.intro-char{
+  color:inherit!important;
+  animation:introEditorialChar .34s cubic-bezier(.22,1,.36,1) forwards!important;
+  animation-delay:calc(var(--i) * .075s + .12s)!important;
+}
+@keyframes introEditorialChar{
+  from{opacity:0;transform:translateY(8px);filter:blur(2px)}
+  to{opacity:1;transform:none;filter:none}
+}
+.hero-intro.out{opacity:0!important;visibility:hidden!important}
+
+@media (max-width:360px){
+  .hero-photo{left:18px!important;right:18px!important;width:calc(100% - 36px)!important}
+  .eyebrow,.hero-meta,.hero-caption{left:18px!important}
+  .hero-meta{right:18px!important}
+  .hero-issue{right:18px!important}
+  .title-en{left:14px!important;right:14px!important;font-size:56px!important}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-photo,.title-en,.hero-meta,.hero-caption{opacity:1!important;transform:none!important;transition:none!important}
+  .intro-char{opacity:1!important;transform:none!important;filter:none!important;animation:none!important}
+}
+
+/* OUR SEASONS — compact editorial photo cards */
+.story .moment{
+  padding:22px 22px 26px!important;
+}
+.story .moment-photo-wrap{
+  margin-top:18px!important;
+  display:flex!important;
+  justify-content:flex-start!important;
+}
+.story .moment-photo,
+.story .timeline .moment:nth-child(3) .moment-photo{
+  width:72%!important;
+  max-width:218px!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  display:block!important;
+  padding:7px!important;
+  background:#fff!important;
+  border:1px solid #dceaf0!important;
+  border-radius:0!important;
+  box-shadow:0 10px 24px rgba(62,111,132,.09)!important;
+  filter:none!important;
+}
+.story .timeline .moment:nth-child(2) .moment-photo-wrap{
+  justify-content:flex-end!important;
+}
+.story .timeline .moment:nth-child(3) .moment-photo-wrap{
+  justify-content:center!important;
+}
+@media (max-width:360px){
+  .story .moment-photo,
+  .story .timeline .moment:nth-child(3) .moment-photo{
+    width:78%!important;
+    max-width:200px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -2760,11 +3060,16 @@ dialog{background:#fff!important}.form-grid input,.form-grid select,.form-grid t
     <div class="hero-intro" id="heroIntro" aria-hidden="true">
       <div class="intro-writing" id="introWriting" aria-hidden="true"></div>
     </div>
-    <p class="eyebrow">SKY GARDEN · 2029</p>
+    <p class="eyebrow">SKY GARDEN · WEDDING EDITION</p>
+    <span class="hero-issue" aria-hidden="true">01</span>
+    <span class="hero-sideword" aria-hidden="true">UNDER THE OPEN SKY</span>
     <img class="hero-photo" src="./images/main.webp" alt="두 사람이 함께 촬영한 메인 커플 사진" />
     <h1 class="title-en">We're getting<br>married.</h1>
-    <p class="hero-names"><span data-a>하늘</span> <em style="color:var(--coral);font-style:normal">×</em> <span data-b>다온</span></p>
-    <p class="hero-date"><span data-date>2029.02.14.</span> · <span data-time>오후 3시</span></p>
+    <div class="hero-meta">
+      <p class="hero-names"><span data-a>하늘</span> <em style="font-style:normal">×</em> <span data-b>다온</span></p>
+      <p class="hero-date"><span data-date>2029.02.14.</span> · <span data-time>오후 3시</span></p>
+    </div>
+    <p class="hero-caption">A DAY TO REMEMBER<br>WITH THE PEOPLE WE LOVE</p>
   </header>
 
   <section id="greeting" class="greeting reveal">
